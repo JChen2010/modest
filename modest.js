@@ -41,7 +41,7 @@ function outputTasksDay (A) {
   return taskList;
 }
 
-const PagingCalendar = React.createClass({
+const Prototype = React.createClass({
   getInitialState: function () {
     return {
       date: moment().startOf('month'),
@@ -357,6 +357,6 @@ const PagingCalendar = React.createClass({
 });
 
 ReactDOM.render(
-  <PagingCalendar />,
+  <Prototype />,
   document.getElementById('app')
 );
