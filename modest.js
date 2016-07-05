@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 import Calendar from './src/Calendar';
 import Week from './src/Week';
 import Month from './src/Month';
+
+import Guides from './src/Guides';
+
 require('./less/bootstrap-theme.less');
 
 /*
@@ -22,6 +25,7 @@ function outputGuides (A) {
   }
   return guideList;
 }
+
 
 //Build task list output
 function outputTasks (A) {
@@ -45,18 +49,22 @@ const Prototype = React.createClass({
   getInitialState: function () {
     return {
       date: moment().startOf('month'),
-      task_title: '',
-      task_details: '',
-      guide_title: '',
-      guide_number: '',
-      title_submit: '',
-      details_submit: '',
-      guide_submit: '',
-      number_submit: '',
-      guide_tasks: '',
-      guides: [],
-      tasks: [],
+      guide_number: "",
+      number_submit: "",
+      guide_tasks: "",
       added_guides: new Array(107), //********
+
+      task_title: "",
+      task_details: "",
+      tasks: [],
+
+      title_submit: "",
+      details_submit: "",
+
+      guide_title: "",
+      guide_submit: "",
+      guides: [],
+
       mods: [
         {
             date: moment(),
@@ -82,17 +90,16 @@ const Prototype = React.createClass({
     };
   },
 
-  handleTitleChange: function(e) {
-    this.setState({task_title: e.target.value});
+  handleTitleChange: function(value) {
+    this.setState({task_title: value});
   },
 
-  handleDetailsChange: function(e) {
-    this.setState({
-      task_details: e.target.value});
+  handleDetailsChange: function(value) {
+    this.setState({task_details: value});
   },
 
-  handleGuideChange: function(e) {
-    this.setState({guide_title: e.target.value});
+  handleGuideChange: function(value) {
+    this.setState({guide_title: value});
   },
 
   handleNumberChange: function(e) {
@@ -113,10 +120,8 @@ const Prototype = React.createClass({
     });
   },
 
-  handleTaskSubmit: function(e) {
-    e.preventDefault();
-    var task_title = this.state.task_title.trim();
-    var task_details = this.state.task_details.trim();
+  handleTaskSubmit: function(task_title, task_details) {
+
     if (!task_details && !task_title) {
       return;
     }
@@ -127,15 +132,15 @@ const Prototype = React.createClass({
     alert("Task Added!");
   },
 
-  handleGuideSubmit: function(e) {
-    e.preventDefault();
-    var guide_title = this.state.guide_title.trim();
+  handleGuideSubmit: function(guide_title, tasks) {
+
     if (!guide_title) {
       return;
     }
+
     this.setState({guide_submit: guide_title});
     this.setState({guide_title: ''});
-    this.state.guides.push([guide_title, this.state.tasks]);
+    this.state.guides.push([guide_title, tasks]);
     this.setState({tasks: []});
     alert("Guide Submitted!");
   },
@@ -217,6 +222,7 @@ const Prototype = React.createClass({
         }
       });
     }*/
+
     this.setState({mods: newMods, added_guides: newGuides});
     alert("Guide Added!");
   },
@@ -225,46 +231,25 @@ const Prototype = React.createClass({
   render: function () {
     return (
       <div>
-        {/*----- Guide Entry -----*/}
-        <br></br>
-        <b>Guide Input</b>
-        <hr></hr>
+        <Guides 
+          task_title={ this.state.task_title }
+          task_details={ this.state.task_details }
+          tasks={ this.state.tasks }
 
-        {/*----- Task Submission -----*/}
-        <form onSubmit={this.handleTaskSubmit}>
-          <div>Task Title: </div>
-          <input
-            className="clear1"
-            type="text"
-            task_title={this.state.task_title}
-            onChange={this.handleTitleChange}
-          />
-          <br></br><br></br>
-          <div>Task Details: </div> 
-          <textarea
-            className="clear2"
-            task_details={this.state.task_details}
-            onChange={this.handleDetailsChange} 
-            rows="3"
-            cols="50"
-            style={{overflow: 'auto', resize: 'none'}}
-          /><br></br><br></br>
-          <input type="submit" value="Add Task"/>
-        </form><br></br>
+          title_submit={ this.state.title_submit }
+          details_submit={ this.state.details_submit }
 
-        {/*----- Guide Submission -----*/}
-        <p>Current Guide:</p>
-        <p className="box"
-          dangerouslySetInnerHTML={{__html: outputTasks(this.state.tasks)}} />
-        <form onSubmit={this.handleGuideSubmit}> 
-          <div>Guide Title: </div>
-          <input
-            type="text"
-            guide_title={this.state.guide_title}
-            onChange={this.handleGuideChange}
-          /><br></br><br></br>
-          <input type="submit" value="Submit Guide"/>
-        </form><br></br><br></br>
+          guide_title={ this.state.guide_title }
+          guide_submit={ this.state.guide_submit }
+          guides={ this.state.guides }
+
+          handleTS={ this.handleTaskSubmit } //task submit
+          handleGS={ this.handleGuideSubmit } //guide submit
+
+          handleTC={ this.handleTitleChange } //task title change
+          handleDC={ this.handleDetailsChange } //task change
+          handleGC={ this.handleGuideChange } //guide title change
+        />
 
         {/*----- Schedule -----*/}
         <b>Schedule</b>
