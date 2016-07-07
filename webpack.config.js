@@ -13,7 +13,7 @@ var config = {
       {
         test: /\.js$/,
         loader: 'babel?presets[]=react,presets[]=es2015,presets[]=stage-0',
-        exclude: [ /node_modules/, /.less$/, 'demo.js' ]
+        exclude: [ /node_modules/, /.less$/, 'modest.js' ]
       },
       // For sample theme
       { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
