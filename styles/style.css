@@ -1,0 +1,28 @@
+.nextMonth {
+	float: right;
+}
+
+.button {
+  margin-right: 25px;
+  display: inline-block;
+}
+
+.courseselector {
+	width: 250px;
+	height: 200px;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #EEEEEE;
+	margin: 20px;
+	display: inline-block;
+}
+
+.selectorGo {
+	top: 200px;
+	font-size: 20px;
+}
+
+div {
+	//display: inline-block;
+	//background-color: #BBBBBB;
+}

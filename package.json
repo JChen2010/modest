@@ -69,8 +69,8 @@
     "prepublish": "webpack",
     "umd": "REACT_CALENDAR_WEBPACK=umd webpack",
     "umd-min": "REACT_CALENDAR_WEBPACK=umd_min webpack",
-    "demo": "REACT_CALENDAR_WEBPACK=umd webpack --entry ./modest.js",
-    "start": "REACT_CALENDAR_WEBPACK=server webpack-dev-server -d --entry ./modest.js --hot --progress --colors --inline",
+    "demo": "REACT_CALENDAR_WEBPACK=umd webpack --entry ./index.js",
+    "start": "webpack-dev-server -d --entry ./index.js",
     "gh-pages": "./scripts/gh-pages.sh"
   }
 }
