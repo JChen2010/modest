@@ -25,8 +25,9 @@ var Main = React.createClass({
           	</Link>
           </div>
         </div>  
-       
-        {this.props.children}
+        <div>
+          {this.props.children}
+        </div>
       </div>
     )
   }

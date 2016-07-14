@@ -15,6 +15,7 @@ export default class Guides extends Component{
 		task_title: PropTypes.string.isRequired,
 		task_details: PropTypes.string.isRequired,
 		tasks: PropTypes.array.isRequired,
+		available_tasks: PropTypes.array.isRequired,
 
 		title_submit: PropTypes.string.isRequired,
 		details_submit: PropTypes.string.isRequired,
@@ -45,7 +46,7 @@ export default class Guides extends Component{
 	//OnSubmit In Task submission form
 	handleTaskSubmit (e) {
 	    e.preventDefault();
-	   	this.props.handleTS(this.props.task_title.trim(), 
+	   	this.props.handleTS(this.props.task_title.trim(),
 	   		this.props.task_details.trim());
   	}
 
@@ -76,7 +77,7 @@ export default class Guides extends Component{
 	      <div>
 	        {/*----- Guide Entry -----*/}
 	        <br></br>
-	        <b>Guide Input</b>
+	        <b>Lesson Planning</b>
 	        <hr></hr>
 
 	        {/*----- Task Submission -----*/}
@@ -101,17 +102,17 @@ export default class Guides extends Component{
 	        </form><br></br>
 
 	        {/*----- Guide Submission -----*/}
-	        <p>Current Guide:</p>
+	        <p>Current Lesson:</p>
 	        <p className="box"
 	          dangerouslySetInnerHTML={{__html: outputTasks(this.props.tasks)}} />
 	        <form onSubmit={this.handleGuideSubmit}> 
-	          <div>Guide Title: </div>
+	          <div>Lesson Title: </div>
 	          <input
 	            type="text"
 	            guide_title={this.props.guide_title}
 	            onChange={this.handleGuideChange}
 	          /><br></br><br></br>
-	          <input type="submit" value="Submit Guide"/>
+	          <input type="submit" value="Submit Lesson"/>
 	        </form><br></br><br></br>
 	       </div>
 	    );

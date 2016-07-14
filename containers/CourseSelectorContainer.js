@@ -16,14 +16,14 @@ var CourseSelectorContainer = React.createClass({
   
   render: function () {
     return (
-      <div className="container-full text-center">
-	      <div className="jumbotron text-center">
-	        <h3>Your courses</h3>        
-	      </div>  
-	      <div className="container text-center">
-	      	<CourseSelector coursename="TOEFL Reading" instrname="Mr. Brooks"></CourseSelector>
-					<CourseSelector coursename="TOEFL Listening" instrname="Ms. Wright"></CourseSelector>
-					<CourseSearch/>					
+    	<div className="container-full text-center">
+	    	<div className="jumbotron text-center">
+	        	<h3>Your courses</h3>   
+	    	</div>  
+	      	<div className="container text-center">
+		      	<CourseSelector coursename="TOEFL Reading" instrname="Mr. Brooks"></CourseSelector>
+				<CourseSelector coursename="TOEFL Listening" instrname="Ms. Wright"></CourseSelector>
+			    <CourseSearch/>					
 	    	</div>
 	    </div>
 	    )

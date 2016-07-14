@@ -17,6 +17,8 @@ var routes = (
       <IndexRoute component={Home} />
       <Route path='Teacher' component={Prototype} />
       <Route path='CourseSelector' component={CourseSelectorContainer} />
+      <Route path='Course' component={Student} />
+
     </Route>
   </Router>
 );
