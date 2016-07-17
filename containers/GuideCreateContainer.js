@@ -6,7 +6,7 @@ import Calendar from '../src/Calendar';
 import Week from '../src/Week';
 import Month from '../src/Month';
 
-import Guides from '../src/Guides';
+import Guides from '../components/GuideCreate';
 
 require('../less/bootstrap-theme.less');
 

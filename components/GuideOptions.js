@@ -1,18 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-//Build task list output
-function outputGuides (A) {
-  var guideList = "<b>#</b> | <b>Title</b><br>";
-  for (var i = 0; i < A.length; i++) {
-    guideList = guideList.concat(`${i + 1} : ` + A[i][0] + "<br>");
-  }
-  return guideList;
-}
-
 export default class GuideOptions extends Component{
 
 	static propTypes = {
-		guides: PropTypes.string.isRequired,
 		guide_number: PropTypes.string.isRequired,
 
 		handleVT: PropTypes.func.isRequired, //task submit
@@ -34,7 +24,7 @@ export default class GuideOptions extends Component{
 
 	handleViewTasks (e) {
 	    e.preventDefault();
-	   	this.props.handleTS(this.props.guide_number);
+	   	this.props.handleVT(this.props.guide_number);
   	}
 
   	handleAddGuide (e) {
@@ -47,6 +37,7 @@ export default class GuideOptions extends Component{
 	    this.props.handleEG(this.props.guide_number);
   	}
 
+  	//Lesson #
   	handleNumberChange (e) {
 		this.props.handleNC(e.target.value);
   	}
@@ -59,7 +50,7 @@ export default class GuideOptions extends Component{
 				<input
 				style={{width: '50px'}}
 				type="text"
-				guide_number={this.state.guide_number}
+				guide_number={this.props.guide_number}
 				onChange={this.handleNumberChange}
 				/> 
 				<form onSubmit={this.handleViewTasks}>

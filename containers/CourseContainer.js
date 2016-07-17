@@ -6,20 +6,14 @@ import Calendar from '../src/Calendar';
 import Week from '../src/Week';
 import Month from '../src/Month';
 
-import Guides from '../src/Guides';
-import Popup from '../src/Popup';
+import Guides from '../components/GuideCreate';
+import History from '../components/History';
+import GuideOptions from '../components/GuideOptions';
+import Popup from '../components/Popup';
 
 require('../less/bootstrap-theme.less');
-var testData = require('./data.js');
+var testData = require('../data/Course1.js');
 
-//Build history output
-function outputHistory (A) {
-  var history = "";
-  for (var i = 0; i < A.length; i++) {
-    history = history.concat(A[i] + "<br>");
-  }
-  return history;
-}
 
 //Build guide list output
 function outputGuides (A) {
@@ -53,7 +47,7 @@ function outputTasksDay (A) {
   return taskList;
 }
 
-const Student = React.createClass({
+const CourseContainer = React.createClass({
   getInitialState: function () {
     return {
       date: moment().startOf('month'),
@@ -148,8 +142,8 @@ const Student = React.createClass({
     this.setState({guide_title: value});
   },
 
-  handleNumberChange: function(e) {
-    this.setState({guide_number: e.target.value});
+  handleNumberChange: function(value) {
+    this.setState({guide_number: value});
   },
 
   handleTaskNumberChange: function(e) {
@@ -196,14 +190,14 @@ const Student = React.createClass({
     alert("Guide Submitted!");
   },
 
-  handleViewTasks: function(e) {
-    e.preventDefault();
-    var num = parseInt(this.state.guide_number.trim());
-    if (!(num > 0 && num <= this.state.guides.length 
+  handleViewTasks: function(guide_number, guides) {
+
+    var num = parseInt(guide_number.trim());
+    if (!(num > 0 && num <= guides.length 
       && Number.isInteger(num))) {
       return;
     }
-    var tasks = outputTasks(this.state.guides[num - 1][1])
+    var tasks = outputTasks(guides[num - 1][1])
     tasks = tasks.replace(/<br>/g, '\n');
     alert(tasks);
   },
@@ -224,8 +218,7 @@ const Student = React.createClass({
     alert("Swap complete!");
   },
 
-  handleEditGuide: function(e) {
-    e.preventDefault();
+  handleEditGuide: function(guide_number) {
     this.setState({currentPopup: 
       (<Popup url='popup.html' 
               title='Lesson Edit' 
@@ -233,10 +226,10 @@ const Student = React.createClass({
               id="container">
               {/*options={{height: '800px', width: '600px'}}*/}
         <div>
-          <p>Current Lesson: { this.state.guides[this.state.guide_number - 1][0] }</p>
+          <p>Current Lesson: { this.state.guides[guide_number - 1][0] }</p>
           <p className="box"
             dangerouslySetInnerHTML={{__html: 
-              outputTasks(this.state.guides[this.state.guide_number - 1][1])}} />
+              outputTasks(this.state.guides[guide_number - 1][1])}} />
           <p>Available Tasks:</p>
           <p className="box"
             dangerouslySetInnerHTML={{__html: 
@@ -263,9 +256,9 @@ const Student = React.createClass({
     });
   },
 
-  handleAddGuide: function(e) {
-    e.preventDefault();
-    var num = parseInt(this.state.guide_number.trim());
+  handleAddGuide: function(guide_number) {
+
+    var num = parseInt(guide_number.trim());
     if (!(num > 0 && num <= this.state.guides.length 
       && Number.isInteger(num))) {
       return;
@@ -273,15 +266,15 @@ const Student = React.createClass({
     var guides = this.state.guides;
     var newGuides = this.state.added_guides;
 
-    var size = guides[num - 1][1].length
+    var size = this.state.guides[num - 1][1].length
     for (var i = 0; i < size; i++) {
       if (newGuides[i]){
       //Fix later: newGuides[parseInt(moment().format('D')) + i].push(
       //  [guides[num - 1][0] ,guides[num - 1][1][i]]);
-      newGuides[i].push([guides[num - 1][0] ,guides[num - 1][1][i]]);
+      newGuides[i].push([this.state.guides[num - 1][0] , this.state.guides[num - 1][1][i]]);
       }
       else{
-        newGuides[i] = [[guides[num - 1][0] ,guides[num - 1][1][i]]];
+        newGuides[i] = [[this.state.guides[num - 1][0] , this.state.guides[num - 1][1][i]]];
       }
     }
     this.setState({added_guides: newGuides});
@@ -385,12 +378,14 @@ const Student = React.createClass({
     if(this.state.view == 0){
       return (
         <div>
+          
           <br></br>
           <form onClick={this.viewSchedule}>
             <input
                 type="button"
                 value="Go to schedule"/>
           </form>
+          
           <Guides 
             task_title={ this.state.task_title }
             task_details={ this.state.task_details }
@@ -411,12 +406,16 @@ const Student = React.createClass({
             handleDC={ this.handleDetailsChange } //task change
             handleGC={ this.handleGuideChange } //guide title change
           />
+          
           {/*Reset Button*/}
-          <br></br><form onSubmit={this.clear}>
+          <br></br>
+          <form onSubmit={this.clear}>
             <input 
               type="submit"
               value="Reset"/>
-          </form><br></br>
+          </form>
+          <br></br>
+        
         </div>
       )
     }
@@ -424,6 +423,7 @@ const Student = React.createClass({
     else {
       return (
         <div>
+          
           <br></br>
           <form onClick={this.viewGuideInput}>
             <input
@@ -431,20 +431,15 @@ const Student = React.createClass({
                 value="Go to lesson planning"/>
           </form>
           <br></br>
+          
           {/*----- Schedule -----*/}
           <b>Schedule</b>
           <hr></hr>
-          <a href="#" className="prevMonth" onClick={this.handlePrevMonth} >
-            Prev Month
-          </a>
-          <a href="#" className="nextMonth" onClick={this.handleNextMonth} >
-            Next Month
-          </a>
           <Calendar 
               weekNumbers={ true }
               startDate={ this.state.date }
               date={ this.state.date }
-              endDate={ this.state.date.clone().add(3, 'month') }
+              endDate={ this.state.date.clone().add(0, 'month') }
               mods={ this.state.start_mods.concat(this.state.task_mods)
               /*
               [
@@ -492,34 +487,20 @@ const Student = React.createClass({
             dangerouslySetInnerHTML={{__html: outputGuides(this.state.guides)}} />
 
           {/*Guide Options*/}
-          Lesson #:&nbsp;
-          <input
-            style={{width: '50px'}}
-            type="text"
-            guide_number={this.state.guide_number}
-            onChange={this.handleNumberChange}
-          /> 
-          <form onSubmit={this.handleViewTasks}>
-            <input
-                type="submit"
-                value="View Tasks  "/>
-          </form>
-          <form onSubmit={this.handleAddGuide}>
-            <input
-                type="submit"
-                value="Add Lesson "/>
-          </form>
-          <form onSubmit={this.handleEditGuide}>
-            <input
-                type="submit"
-                value="Edit Lesson "/>
-          </form>
+          <GuideOptions
+            guide_number={ this.state.guide_number }
+
+            handleVT={ this.handleViewTasks } //task submit
+            handleAG={ this.handleAddGuide } //guide submit
+            handleEG={ this.handleEditGuide } //guide submit
+
+            handleNC = { this.handleNumberChange } //task title change
+          />
 
           {/*History*/}
-          <br></br>
-          <p><b>History:</b></p>
-          <p className="box2"
-              dangerouslySetInnerHTML={{__html: outputHistory(this.state.history)}} />
+          <History
+            history={ this.state.history }
+          />
 
           <div>{popup}</div>
           {/*Reset Button*/}
@@ -534,4 +515,4 @@ const Student = React.createClass({
   }
 });
 
-module.exports = Student;
+module.exports = CourseContainer;
