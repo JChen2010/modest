@@ -190,14 +190,14 @@ const CourseContainer = React.createClass({
     alert("Guide Submitted!");
   },
 
-  handleViewTasks: function(guide_number, guides) {
+  handleViewTasks: function(guide_number) {
 
     var num = parseInt(guide_number.trim());
-    if (!(num > 0 && num <= guides.length 
+    if (!(num > 0 && num <= this.state.guides.length
       && Number.isInteger(num))) {
       return;
     }
-    var tasks = outputTasks(guides[num - 1][1])
+    var tasks = outputTasks(this.state.guides[num - 1][1])
     tasks = tasks.replace(/<br>/g, '\n');
     alert(tasks);
   },
