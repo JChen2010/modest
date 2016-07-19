@@ -11,6 +11,8 @@ import History from '../components/History';
 import GuideOptions from '../components/GuideOptions';
 import Popup from '../components/Popup';
 
+var Course = require('../components/Course');
+
 require('../less/bootstrap-theme.less');
 var testData = require('../data/Course1.js');
 
@@ -190,8 +192,9 @@ const CourseContainer = React.createClass({
     alert("Guide Submitted!");
   },
 
-  handleViewTasks: function(guide_number, guides) {
+  handleViewTasks: function(guide_number) {
 
+    var guides = this.state.guides;
     var num = parseInt(guide_number.trim());
     if (!(num > 0 && num <= guides.length 
       && Number.isInteger(num))) {
@@ -423,7 +426,11 @@ const CourseContainer = React.createClass({
     else {
       return (
         <div>
-          
+          <Course 
+            date={this.state.date}
+            start_mods={this.state.start_mods}
+            task_mods={this.state.task_mods}
+          />
           <br></br>
           <form onClick={this.viewGuideInput}>
             <input
@@ -440,7 +447,7 @@ const CourseContainer = React.createClass({
               startDate={ this.state.date }
               date={ this.state.date }
               endDate={ this.state.date.clone().add(0, 'month') }
-              mods={ this.state.start_mods.concat(this.state.task_mods)
+              mods={this.state.start_mods.concat(this.state.task_mods)
               /*
               [
                 {
@@ -479,7 +486,10 @@ const CourseContainer = React.createClass({
                   }
                 }
               ]*/
-            } /><br></br>
+              } 
+          />
+
+          <br></br>
 
           {/*Guide List*/}
           <p><b>Available Lessons:</b></p>
