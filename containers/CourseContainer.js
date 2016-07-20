@@ -1,3 +1,8 @@
+// At this stage, guide entering functionality 
+// will be broken due to structural changes. 
+// Just work with data files for now.
+// Ignore anything to do with creation creation.
+
 import moment from 'moment';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -14,14 +19,17 @@ import Popup from '../components/Popup';
 var Course = require('../components/Course');
 
 require('../less/bootstrap-theme.less');
-var testData = require('../data/Course1.js');
+
+//this course file should be selected and passed in as a prop from course selector, working with this for now
+var testData = require('../data/Course2.js');
+var userData = require('../data/user1.js');
 
 
 //Build guide list output
 function outputGuides (A) {
   var guideList = "<b>#</b> | <b>Title</b><br>";
   for (var i = 0; i < A.length; i++) {
-    guideList = guideList.concat(`${i + 1} : ` + A[i][0] + "<br>");
+    guideList = guideList.concat(`${i + 1} : ` + A[i][0][0] + "<br>");
   }
   return guideList;
 }
@@ -38,13 +46,13 @@ function outputTasks (A) {
 
 //Build daily task list output
 function outputTasksDay (A) {
-  var taskList = "<b>Daily Tasks</b><br><br>";
-  for (var i = 0; i < A.length; i++) {
-    var tasks = A[i][1][1];
-    tasks = tasks.replace(/\n/g, '<br>');
-    taskList = taskList.concat(`<b>Task ${i + 1}:</b>` + "<br>Lesson: <b>" + A[i][0] + "</b><br>" +
-                                "  Task: <b>" + A[i][1][0] + "</b><br>" +
-                                "  Instructions: <br>" + tasks + "<br><br>");
+  var taskList = "<b>Lesson: </b> + A[0]<br><br>";
+  for (var i = 0; i < A[1].length; i++) {
+    var task = A[1][i][1];
+    task = task.replace(/\n/g, '<br>');
+    taskList = taskList.concat(`<b>Task ${i + 1}:</b>` + "<br>Expected time: <b>" + A[1][i][2] + "</b><br>" +
+                                "  Task: <b>" + A[1][i][0] + "</b><br>" +
+                                "  Instructions: <br>" + task + "<br><br>");
   }
   return taskList;
 }
@@ -56,19 +64,28 @@ const CourseContainer = React.createClass({
       guide_number: "1",
       number_submit: "",
       guide_tasks: "",
-      added_guides: [], //********
 
       task_title: "",
       task_details: "",
       tasks: [],
-      available_tasks: [],
 
       title_submit: "",
       details_submit: "",
 
       guide_title: "",
       guide_submit: "",
+
+      //In this version, treat as an immutable set of lessons in the course.
       guides: testData,
+
+      user: userData,
+
+      //Deprecated - alternate lessons instead stored in data
+      //available_tasks: "",
+
+      //Deprecated - all guides (lessons) in a course will be
+      //automatically added => guides = added_guides.
+      //added_guides: [],
 
       isPoppedup: false,
       currentPopup: <div></div>,
@@ -175,7 +192,7 @@ const CourseContainer = React.createClass({
     this.setState({title_submit: task_title, details_submit: task_details});
     this.setState({task_title: '', task_details: ''});
     this.state.tasks.push([task_title, task_details]);
-    this.state.available_tasks.push([task_title, task_details]);
+    //this.state.available_tasks.push([task_title, task_details]);
     alert("Task Added!");
   },
 
@@ -200,11 +217,13 @@ const CourseContainer = React.createClass({
       && Number.isInteger(num))) {
       return;
     }
-    var tasks = outputTasks(this.state.guides[num - 1][1])
+    var tasks = outputTasks(this.state.guides[num - 1][0][1])
     tasks = tasks.replace(/<br>/g, '\n');
     alert(tasks);
   },
 
+//Deprecated - swapping lessons instead of tasks
+/*
   handleSwap1: function(e) {
     this.setState({swap1: e.target.value})
   },
@@ -215,12 +234,37 @@ const CourseContainer = React.createClass({
 
   handleSwap: function(e) {
     var swappedTask = this.state.guides;
-    swappedTask[this.state.guide_number - 1][1][this.state.swap1 - 1] = 
+    swappedTask[this.state.guide_number - 1][0][1][this.state.swap1 - 1] = 
     this.state.available_tasks[this.state.swap2 - 1];
     this.setState({guides: swappedTask, isPoppedup: false});
     alert("Swap complete!");
   },
+*/
 
+  //***written to work with new structure***
+  //when you click on the guide you want to swap, have that button trigger this function
+  //i is the index of the lesson you wish to make the swap in, and j is the index of the alternate lesson
+  //I am expecting this to work by passing in the appropriate indices when an alternate lesson is selected
+  /*
+    For example, for the data in Course2, calling handleLessonSwap(0, 1) will change the default lesson from
+    "Case Studies 1 - Reading" to "Case Studies 1 - Video".
+  */
+  //change the function prototype to whatever you need, but need to have i, j refer to the appropriate indices.
+  handleLessonSwap: function(i, j) {
+    var newGuides = this.state.guides;
+    var tempLesson = guides[i][0];
+    newGuides[i][0] = newGuides[i][j];
+    newGuides[i][j] = tempLesson;
+    this.setState({guides: newGuides});
+  },
+
+  //Placeholder code - this will bring up the list of alternative lessons
+  handleAltLessons: function(e) {
+    return;
+  },
+
+
+  //Deprecated function - do not use (new edit functionality will be for lessons overall)
   handleEditGuide: function(guide_number) {
     this.setState({currentPopup: 
       (<Popup url='popup.html' 
@@ -229,10 +273,10 @@ const CourseContainer = React.createClass({
               id="container">
               {/*options={{height: '800px', width: '600px'}}*/}
         <div>
-          <p>Current Lesson: { this.state.guides[guide_number - 1][0] }</p>
+          <p>Current Lesson: { this.state.guides[guide_number - 1][0][0] }</p>
           <p className="box"
             dangerouslySetInnerHTML={{__html: 
-              outputTasks(this.state.guides[guide_number - 1][1])}} />
+              outputTasks(this.state.guides[guide_number - 1][0][1])}} />
           <p>Available Tasks:</p>
           <p className="box"
             dangerouslySetInnerHTML={{__html: 
@@ -259,6 +303,49 @@ const CourseContainer = React.createClass({
     });
   },
 
+  // Add every guide in the course to the calendar. Call at every render for demo to account for Lesson swaps.
+  // This local version of guides will 
+  addCourse: function() {
+      for (var i = 0; i < guides.length; i++) {
+          this.addGuide(i);
+      }
+  },
+
+  addGuide: function(guide_number) {
+    var guides = this.state.guides;
+    var newGuides = this.state.added_guides;
+    var size = guides.length;
+    var dayNum = 0;
+    for (var i = 0; i < size; i++) {
+      if(!(newGuides[i])){
+        newGuides[i] = [guides[num - 1]]
+        dayNum = i;
+        i = size;
+      }
+    }
+    var newMods = this.state.mods;
+    this.setState({added_guides: newGuides});
+
+    //Apply new guide to calendar
+    var tasks1 = outputTasks(newGuides[dayNum][1]);
+    tasks1 = tasks1.replace(/<br>/g, '\n');
+    console.log(tasks1);
+    newMods.push(
+      {
+        date: moment().add(dayNum, 'days'),
+        classNames: [ 'event', 'warning' ],
+        component: [ 'day' ],
+        events: {
+          onClick: () => alert(tasks1)
+          //(guide_tasks) => alert(`${guide_tasks}`)
+        }
+    });
+    this.setState({mods: newMods, added_guides: newGuides});
+    alert("Guide Added!");
+  },
+
+  //Deprecated - since we are going with one lesson per day instead
+  /*
   handleAddGuide: function(guide_number) {
 
     var num = parseInt(guide_number.trim());
@@ -269,15 +356,15 @@ const CourseContainer = React.createClass({
     var guides = this.state.guides;
     var newGuides = this.state.added_guides;
 
-    var size = this.state.guides[num - 1][1].length
+    var size = this.state.guides[num - 1][0][1].length
     for (var i = 0; i < size; i++) {
       if (newGuides[i]){
       //Fix later: newGuides[parseInt(moment().format('D')) + i].push(
       //  [guides[num - 1][0] ,guides[num - 1][1][i]]);
-      newGuides[i].push([this.state.guides[num - 1][0] , this.state.guides[num - 1][1][i]]);
+      newGuides[i].push([this.state.guides[num - 1][0][0] , this.state.guides[num - 1][0][1][i]]);
       }
       else{
-        newGuides[i] = [[this.state.guides[num - 1][0] , this.state.guides[num - 1][1][i]]];
+        newGuides[i] = [[this.state.guides[num - 1][0][0] , this.state.guides[num - 1][0][1][i]]];
       }
     }
     this.setState({added_guides: newGuides});
@@ -291,7 +378,7 @@ const CourseContainer = React.createClass({
   },
 
   pushMods: function(i, newGuides, newMods) {
-    var modOutput = outputTasksDay(newGuides[i]);
+    var modOutput = outputTasksDay(newGuides[i][0]);
     var modIndex = newMods.slice().length + 1;
     newMods.push(
     {
@@ -334,8 +421,9 @@ const CourseContainer = React.createClass({
       }
     });
     this.setState({task_mods: newMods});
-  },
+  },*/
 
+  //Task incomplete button should call this function
   handleFail: function(i, e) {
     var num = parseInt(this.state.task_number.trim());
     if (!(num > 0 && num <= this.state.added_guides[i].length 
@@ -350,6 +438,7 @@ const CourseContainer = React.createClass({
     this.setState({history: newHistory});
   },
 
+  //Task complete button should call this function
   handleSuccess: function(i, e) {
     var num = parseInt(this.state.task_number.trim());
     if (!(num > 0 && num <= this.state.added_guides[i].length 
