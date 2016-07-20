@@ -22,7 +22,33 @@
 	font-size: 20px;
 }
 
-div {
-	//display: inline-block;
-	//background-color: #BBBBBB;
+.bg-light {
+	background-color: #EEEEEE;
+}
+
+.nav-header {
+	background: #EEEEEE;
+}
+
+.nav {
+	background-color: #FBFBFB;
+	width: 35%;
+	margin: 5px;
+	border-radius: 5px
+	
+}
+
+.main-container {
+	display: flex;
+}
+
+.progress {
+	margin: 15px;
+}
+
+.tasks-list {
+	width: 65%;
+	margin: 5px;
+	background-color: #FBFBFB;
+	border-radius: 5px
 }
