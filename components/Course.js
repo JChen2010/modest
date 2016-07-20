@@ -6,6 +6,8 @@ import Calendar from '../src/Calendar';
 import Week from '../src/Week';
 import Month from '../src/Month';
 
+var LessonsList = require('../components/LessonsList');
+
 function Course (props) {
   return (
     
@@ -24,22 +26,17 @@ function Course (props) {
                 </div>
             </div>
             {/*Lessons list*/}
-            <div className="list-group">
-                <a className="list-group-item">
-                    Lesson 1
-                </a>
-                <a className="list-group-item">Lesson 2</a>
-                <a className="list-group-item active">Lesson 3</a>
-                <a className="list-group-item">Lesson 4</a>
-                <a className="list-group-item">Lesson 5</a>
-            </div>
+            <LessonsList 
+                current_lesson={props.current_lesson}
+                handleChangeLesson={props.handleChangeLesson}
+            />
             {/*Calendar*/}
             <div className="panel panel-default bg-info">
                 <Calendar 
-                    weekNumbers={ true }
-                    startDate={ props.date }
-                    date={ props.date }
-                    endDate={ props.date.clone().add(0, 'month') }
+                    weekNumbers={true}
+                    startDate={props.date}
+                    date={props.date}
+                    endDate={props.date.clone().add(0, 'month')}
                     mods={props.start_mods.concat(props.task_mods)} 
                 />
             </div>
@@ -76,6 +73,11 @@ function Course (props) {
     		
     </div>
   )
+}
+
+Course.propTypes = {
+    current_lesson: PropTypes.number.isRequired,
+    handleChangeLesson: PropTypes.func.isRequired
 }
 
 module.exports = Course;

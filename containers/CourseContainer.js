@@ -53,7 +53,7 @@ const CourseContainer = React.createClass({
   getInitialState: function () {
     return {
       date: moment().startOf('month'),
-      guide_number: "",
+      guide_number: "1",
       number_submit: "",
       guide_tasks: "",
       added_guides: [], //********
@@ -372,6 +372,15 @@ const CourseContainer = React.createClass({
     this.setState({view: 0});
   },
 
+  handleChangeLesson: function(e) {
+    var index = e.target.getAttribute('data-index'); 
+    alert(index);
+    this.setState({
+      guide_number: index
+    });
+  },
+
+  
   render: function () {
     var popup = "";
     if (this.state.isPoppedup){
@@ -430,7 +439,12 @@ const CourseContainer = React.createClass({
             date={this.state.date}
             start_mods={this.state.start_mods}
             task_mods={this.state.task_mods}
+            current_lesson={parseInt(this.state.guide_number.trim())}
+            handleChangeLesson={this.handleChangeLesson}
+
           />
+          
+        {/*Old UI*/}
           <br></br>
           <form onClick={this.viewGuideInput}>
             <input
