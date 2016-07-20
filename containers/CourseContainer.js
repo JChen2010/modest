@@ -600,6 +600,7 @@ const CourseContainer = React.createClass({
             dangerouslySetInnerHTML={{__html: outputGuides(this.state.guides)}} />
 
           {/*Guide Options*/}
+          {/* Deprecated
           <GuideOptions
             guide_number={ this.state.guide_number }
 
@@ -608,13 +609,13 @@ const CourseContainer = React.createClass({
             handleEG={ this.handleEditGuide } //guide submit
 
             handleNC = { this.handleNumberChange } //task title change
-          />
+          />/*}
 
           {/*History*/}
+          {/* Deprecated
           <History
             history={ this.state.history }
-          />
-
+          />*/}
           <div>{popup}</div>
           {/*Reset Button*/}
           <br></br><form onSubmit={this.clear}>
