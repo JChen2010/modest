@@ -425,6 +425,7 @@ const CourseContainer = React.createClass({
   },*/
 
   //Task incomplete button should call this function
+  /*
   handleFail: function(i, e) {
     var num = parseInt(this.state.task_number.trim());
     if (!(num > 0 && num <= this.state.added_guides[i].length 
@@ -437,9 +438,50 @@ const CourseContainer = React.createClass({
       "</b> from Lesson: <b>" + this.state.added_guides[i][this.state.task_number - 1][0]
       + "</b> on " + moment().add(i, 'days').format('YYYY-MM-DD'));
     this.setState({history: newHistory});
+  },*/
+
+    //Task complete button should call this function
+  //i = task number, result = [score, total] (pass in [] if no assessment)
+  handleTaskComplete: function(i, result) {
+    var newUser = this.state.user;
+    var guides = this.state.guides;
+    var cn = this.state.courseNumber;
+    if (newUser.courses[cn].currentTaskNumber == guides[newUser.courses[cn].currentLessonNumber][0][1].length){
+
+      //Modify user history
+      newUser.history[cn].completed = true;
+      newUser.history[cn].date = moment();
+      newUser.history[cn].tasks.push({
+          taskNumber: i,
+          date: moment(),
+          result: result
+      });
+
+      //Go to next lesson
+      newUser.courses[cn].currentTaskNumber = 0;
+      newUser.courses[cn].currentLessonNumber++;
+    }
+    else
+    {
+      //Modify user history
+      newUser.history[cn].tasks.push({
+        taskNumber: i,
+        date: moment(),
+        result: result
+      });
+
+      //Go to next task
+      newUser.courses[cn].currentTaskNumber++;
+    }
+
+    //Update local state
+    this.setState({user: newUser});
+
+    //IN FINAL VERSION, UPDATE DATABASE HERE
   },
 
   //Task complete button should call this function
+  /*
   handleSuccess: function(i, e) {
     var num = parseInt(this.state.task_number.trim());
     if (!(num > 0 && num <= this.state.added_guides[i].length 
@@ -452,7 +494,7 @@ const CourseContainer = React.createClass({
       "</b> from Lesson: <b>" + this.state.added_guides[i][this.state.task_number - 1][0]
       + "</b> on " + moment().add(i, 'days').format('YYYY-MM-DD'));
     this.setState({history: newHistory});
-  },
+  },*/
 
   viewSchedule: function(e) {
     this.setState({view: 1});
