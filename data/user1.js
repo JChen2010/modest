@@ -2,7 +2,7 @@ var user1 = {
 	name: "John Smith",
 	history: [],
 	courses: [
-		{courseName: "", startDate: "", currentLessonNumber: "", currentTaskNumber: "", preferences: [], lessonChoices: [0, 0]}
+		{courseName: "", startDate: "", currentLessonNumber: "1", currentTaskNumber: "", preferences: [], lessonChoices: [0, 0]}
 	],
 	/*
 	lessonChoices: list of the choice of each lesson from the course

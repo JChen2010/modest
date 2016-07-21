@@ -22,13 +22,14 @@ function Course (props) {
             {/*Progress*/}
             <div className="progress">
                 <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{width: '60%'}}>
-                    Copleted: <strong>60%</strong>
+                    Completed: <strong>60%</strong>
                 </div>
             </div>
             {/*Lessons list*/}
             <LessonsList 
                 current_lesson={props.current_lesson}
                 handleChangeLesson={props.handleChangeLesson}
+                course={props.course}
             />
             {/*Calendar*/}
             <div className="panel panel-default bg-info">
@@ -42,7 +43,7 @@ function Course (props) {
             </div>
         </div>
 
-        {/*Current task*/}
+        {/*Current tasks*/}
         <div className="tasks-list">
             <div className="panel panel-default">
                 <div className="panel-heading">
@@ -51,7 +52,7 @@ function Course (props) {
                 </div>
                 <div className="panel-body">
                     <p>Please, read everything here.</p>
-                    <p>Please</p>
+                    <p>Current lesson {props.current_lesson}</p>
                 </div>
             </div>
 
@@ -77,7 +78,12 @@ function Course (props) {
 
 Course.propTypes = {
     current_lesson: PropTypes.number.isRequired,
-    handleChangeLesson: PropTypes.func.isRequired
+    handleChangeLesson: PropTypes.func.isRequired,
+    course: PropTypes.array.isRequired,
+    courseNum: PropTypes.number.isRequired,
+    user: PropTypes.object.isRequired
+
+
 }
 
 module.exports = Course;

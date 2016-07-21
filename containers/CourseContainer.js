@@ -61,7 +61,8 @@ const CourseContainer = React.createClass({
   getInitialState: function () {
     return {
       date: moment().startOf('month'),
-      guide_number: "1",
+      courseNumber: 0,  //take from props
+      guide_number: userData.courses[0].currentLessonNumber, //0 - courseNumber - take from props
       number_submit: "",
       guide_tasks: "",
 
@@ -463,7 +464,6 @@ const CourseContainer = React.createClass({
 
   handleChangeLesson: function(e) {
     var index = e.target.getAttribute('data-index'); 
-    alert(index);
     this.setState({
       guide_number: index
     });
@@ -528,9 +528,11 @@ const CourseContainer = React.createClass({
             date={this.state.date}
             start_mods={this.state.start_mods}
             task_mods={this.state.task_mods}
-            current_lesson={parseInt(this.state.guide_number.trim())}
+            current_lesson={this.state.guide_number}
             handleChangeLesson={this.handleChangeLesson}
-
+            course={this.state.guides}
+            courseNum={this.state.courseNumber}
+            user={this.state.user}
           />
           
         {/*Old UI*/}
