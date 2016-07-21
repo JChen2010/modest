@@ -243,12 +243,16 @@ const CourseContainer = React.createClass({
     "Case Studies 1 - Reading" to "Case Studies 1 - Video".
   */
   //change the function prototype to whatever you need, but need to have i, j refer to the appropriate indices.
-  handleLessonSwap: function(i, j) {
+  handleLessonSwap: function() {
+    var i = this.state.guide_number;
+    var j = this.state.altLessonsIndex[i]
     var newGuides = this.state.guides;
-    var tempLesson = guides[i][0];
+    var tempLesson = this.state.guides[i][0];
     newGuides[i][0] = newGuides[i][j];
     newGuides[i][j] = tempLesson;
-    this.setState({guides: newGuides});
+    var tempIndex = this.state.altLessonsIndex;
+    tempIndex[i] = 0;
+    this.setState({guides: newGuides, altLessonsIndex: tempIndex});
   },
 
   //Placeholder code - this will bring up the list of alternative lessons
@@ -261,7 +265,7 @@ const CourseContainer = React.createClass({
   handleEditGuide: function(guide_number) {
     this.setState({currentPopup: 
       (<Popup url='popup.html' 
-              title='Lesson Edit' 
+              title='Lesson Edit'
               onClosing={this.popupClosed}
               id="container">
               {/*options={{height: '800px', width: '600px'}}*/}
@@ -595,6 +599,7 @@ const CourseContainer = React.createClass({
             handleChangeLesson={this.handleChangeLesson}
             handleNextLesson={this.handleNextLesson}
             handleTaskComplete={this.handleTaskComplete}
+            handleLessonSwap={this.handleLessonSwap}
             course={this.state.guides}
             courseNum={this.state.courseNumber}
             user={this.state.user}

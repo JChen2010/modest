@@ -33,8 +33,9 @@ var TasksList = React.createClass({
     lesson: PropTypes.array.isRequired,
     //lessonName: PropTypes.string.isRequired,
     handleTaskComplete: PropTypes.func.isRequired,
-    currentLessonNumber: PropTypes.number.isRequired
-
+    currentLessonNumber: PropTypes.number.isRequired,
+    handleLessonSwap: PropTypes.func.isRequired,
+    altLessonsIndex: PropTypes.array.isRequired
   },	
   
   getInitialState: function () {
@@ -84,14 +85,25 @@ var TasksList = React.createClass({
       )
     } else {
 
+    var study;
+    if(this.props.altLessonsIndex[this.props.currentLessonNumber] != 0){
+      study =            
+        <button type="button" className="btn btn-default btn-sm" onClick={this.props.handleLessonSwap}>
+          <span className="glyphicon glyphicon-edit" aria-hidden="true"></span> Study
+        </button>;
+    } else {
+      study =
+        <button type="button" className="btn btn-success btn-xs">
+          <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Chosen Lesson
+        </button>;
+    }
+
     return (
     	 <div className="tasks-list">
             <div className="panel panel-default bg-info">
                 <div className="panel-body text-center nav-header" id="lesson_header">
                     <h4>Lesson: <strong>{this.props.lessonName}</strong></h4>
-                    <button type="button" className="btn btn-default btn-sm">
-                      <span className="glyphicon glyphicon-edit" aria-hidden="true"></span> Study
-                    </button>
+                    {study}
                 </div>
             </div>
           {/*Tasks*/}

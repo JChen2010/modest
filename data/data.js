@@ -78,7 +78,7 @@ var reading =
 	],
 
 	[
-		["Reading Comprehension - Dinosaurs",
+		["Comprehension - Dinosaurs",
 			[
 				["Read Article",
 					"Read article from  ETS TOEFL Planner page 43 on Meteorite Impact and Dinosaur Extinction", 20
@@ -135,7 +135,7 @@ var reading =
 	],
 
 	[
-		["Article Reading I",
+		["Article Reading",
 			[
 				["Read Article",
 					"Read article at:\n http://www.nytimes.com/2016/07/21/business/dealbook/hsbc-foreign-exchange-investigation-currency.html\n This article describes HSBC's foreign exchange investigation currency.",
@@ -150,30 +150,6 @@ var reading =
 			[
 				["Read Article",
 				"Read article at:\n http://blog.wonderland.com/new-rides-this-season\n This article describes Wonderland's new rides this season.", 20
-				],
-
-				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40
-				]
-			]
-		]
-	],
-
-	[
-		["Article Reading II",
-			[
-				["Read Article",
-					"Read article at http://www.nytimes.com/2016/07/21/business/dealbook/hsbc-foreign-exchange-investigation-currency.html on HSBC's foreign exchange investigation currency.",
-					20
-				],
-
-				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40]
-			]
-		],
-
-		["Summarization - Wonderland",
-			[
-				["Read Article",
-				"Read article at http://blog.wonderland.com/new-rides-this-season", 20
 				],
 
 				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40

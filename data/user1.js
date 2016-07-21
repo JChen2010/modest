@@ -27,7 +27,7 @@ var user1 = {
 		},
 	],
 	courses: [
-		{courseName: "Reading", startDate: moment(), currentLessonNumber: 2, currentTaskNumber: 0, preferences: [], lessonChoices: [0, 0]}
+		{courseName: "Reading", startDate: moment(), currentLessonNumber: 2, currentTaskNumber: 0, recs: [[0, 0], [0], [4.3, 1.7, 1.6], [4.2], [2.2, 3.3]], ratings: [[2, 5], [2], [0, 0, 0], [0]], lessonChoices: [0, 0]}
 	],
 	/*
 	lessonChoices: list of the choice of each lesson from the course
