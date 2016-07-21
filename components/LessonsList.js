@@ -6,18 +6,11 @@ var LessonsList = React.createClass({
   propTypes: {
   	current_lesson: PropTypes.number.isRequired,
   	handleChangeLesson: PropTypes.func.isRequired,
-    course: PropTypes.array.isRequired
+    handleNextLesson: PropTypes.func.isRequired,
+    course: PropTypes.array.isRequired,
+    altLessonsIndex: PropTypes.array.isRequired
   },	
 
-  getInitialState: function () {
-    return {
-      
-    }
-  },
-
-  componentDidMount: function () {
-    //document.getElementById("main-div").childNodes[this.props.current_lesson].className = "list-group-item active";
-  }, 
  
   render: function () {
     return (
@@ -28,14 +21,13 @@ var LessonsList = React.createClass({
               if (i == this.props.current_lesson) {
                 return (
                   <div style={{display: "flex"}}>
-                    <button type="button" className="list-group-item active" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[0][0]}</button>
-                    
-
+                    <button type="button" className="list-group-item active" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[this.props.altLessonsIndex[i]][0]}</button>
                     <button type="button" className="btn btn-default btn-xs">
                       <span className="glyphicon glyphicon-star" aria-hidden="true"></span>Top
                     </button>
-                    <button type="button" className="btn btn-default btn-xs">
-                      <span className="glyphicon glyphicon-chevron-right" aria-hidden="true" data-index={i} onClick={this.props.handleNextLesson}></span>More
+                    <button type="button" className="btn btn-default btn-xs" data-index={i} onClick={this.props.handleNextLesson}>
+                      <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                      More
                     </button>
                   
                   </div>

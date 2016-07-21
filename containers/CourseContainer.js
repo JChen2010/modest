@@ -515,6 +515,24 @@ const CourseContainer = React.createClass({
     this.setState({
       guide_number: parseInt(index)
     });
+    var temp = this.state.altLessonsIndex;
+    for (var i = 0; i < temp.length; i++) {
+      temp[i] = 0;
+    }
+    this.setState({altLessonsIndex: temp});
+  },
+
+   handleNextLesson: function(e) {
+    e.preventDefault();
+    var index = e.target.getAttribute('data-index'); 
+    //alert(index);
+    var altLessonsIndexTemp = this.state.altLessonsIndex;
+    if (altLessonsIndexTemp[index] < this.state.guides[index].length - 1) {
+      altLessonsIndexTemp[index] += 1;
+    };   
+    this.setState({
+      altLessonsIndex: altLessonsIndexTemp
+    });
   },
   
   render: function () {
@@ -586,10 +604,12 @@ const CourseContainer = React.createClass({
             task_mods={this.state.task_mods}
             current_lesson={this.state.guide_number}
             handleChangeLesson={this.handleChangeLesson}
+            handleNextLesson={this.handleNextLesson}
             handleTaskComplete={this.handleTaskComplete}
             course={this.state.guides}
             courseNum={this.state.courseNumber}
             user={this.state.user}
+            altLessonsIndex={this.state.altLessonsIndex}
           />
           
         {/*Old UI*/}

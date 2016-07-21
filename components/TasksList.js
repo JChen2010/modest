@@ -31,7 +31,8 @@ var Scorecard = React.createClass({
 var TasksList = React.createClass({
   propTypes: {
     lesson: PropTypes.array.isRequired,
-    handleTaskComplete: PropTypes.func.isRequired
+    //lessonName: PropTypes.string.isRequired,
+    handleTaskComplete: PropTypes.func.isRequired  
   },	
   
   getInitialState: function () {
@@ -74,6 +75,15 @@ var TasksList = React.createClass({
 
     return (
     	 <div className="tasks-list">
+            <div className="panel panel-default bg-info">
+                <div className="panel-body text-center nav-header" id="lesson_header">
+                    <h4>Lesson: <strong>{this.props.lessonName}</strong></h4>
+                    <button type="button" className="btn btn-default btn-sm">
+                      <span className="glyphicon glyphicon-edit" aria-hidden="true"></span> Study
+                    </button>
+                </div>
+            </div>
+          {/*Tasks*/}
           {
             this.props.lesson.map(function(task, i){     
               return (   
@@ -98,7 +108,7 @@ var TasksList = React.createClass({
               )
             }.bind(this))
           }
-          {/*Raitings*/}
+          {/*Raitings
 
           <DropdownButton bsStyle="info" title="Please, rate this lesson!">
             <MenuItem>Wonderful, just what I need</MenuItem>
@@ -106,6 +116,7 @@ var TasksList = React.createClass({
             <MenuItem>Somehow useful</MenuItem>
             <MenuItem>Waste of time</MenuItem>
           </DropdownButton>
+          */}
         </div>
 	    )
   }

@@ -30,7 +30,9 @@ function Course (props) {
             <LessonsList 
                 current_lesson={props.current_lesson}
                 handleChangeLesson={props.handleChangeLesson}
+                handleNextLesson={props.handleNextLesson}
                 course={props.course}
+                altLessonsIndex={props.altLessonsIndex}
             />
             {/*Calendar*/}
             <div className="panel panel-default bg-info">
@@ -46,8 +48,10 @@ function Course (props) {
 
         {/*Current tasks*/}
         <TasksList
-            lesson={props.course[props.current_lesson][0][1]}
+            lesson={props.course[props.current_lesson][props.altLessonsIndex[props.current_lesson]][1]}
+            lessonName={props.course[props.current_lesson][props.altLessonsIndex[props.current_lesson]][0]}
             handleTaskComplete={props.handleTaskComplete}
+
         />
     </div>
   )
@@ -56,10 +60,12 @@ function Course (props) {
 Course.propTypes = {
     current_lesson: PropTypes.number.isRequired,
     handleChangeLesson: PropTypes.func.isRequired,
+    handleNextLesson: PropTypes.func.isRequired,
     course: PropTypes.array.isRequired,
     courseNum: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired,
-    handleTaskComplete: PropTypes.func.isRequired
+    handleTaskComplete: PropTypes.func.isRequired,
+    altLessonsIndex: PropTypes.array.isRequired
 }
 
 module.exports = Course;
