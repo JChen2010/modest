@@ -48,6 +48,7 @@ function Course (props) {
         <TasksList
             lesson={props.course[props.current_lesson][0][1]}
             handleTaskComplete={props.handleTaskComplete}
+            currentLessonNumber={props.current_lesson}
         />
     </div>
   )
@@ -59,8 +60,7 @@ Course.propTypes = {
     course: PropTypes.array.isRequired,
     courseNum: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired,
-    handleTaskComplete: PropTypes.func.isRequired,
-    currentTaskNumber: PropTypes.number.isRequired
+    handleTaskComplete: PropTypes.func.isRequired
 }
 
 module.exports = Course;

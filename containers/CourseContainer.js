@@ -579,7 +579,6 @@ const CourseContainer = React.createClass({
             course={this.state.guides}
             courseNum={this.state.courseNumber}
             user={this.state.user}
-            currentLessonNumber={this.state.guide_number}
           />
           
         {/*Old UI*/}

@@ -32,7 +32,7 @@ var TasksList = React.createClass({
   propTypes: {
     lesson: PropTypes.array.isRequired,
     handleTaskComplete: PropTypes.func.isRequired,
-    currentLessonNumber: PropTypes.number.isRequired,
+    currentLessonNumber: PropTypes.number.isRequired
   },	
   
   getInitialState: function () {
@@ -41,14 +41,16 @@ var TasksList = React.createClass({
       QuizContent: {},
       index: 0,
       result: [0, 0],
-      completed: 0
+      completed: [0, 0, 0, 0, 0, 0]
     }
   },
 
   handleTC: function (e) {
     var index = e.target.getAttribute('data-index');
+    var temp = this.state.completed;
+    temp[this.props.currentLessonNumber]++;
+    this.setState({completed: temp});
     this.props.handleTaskComplete(index, []);
-    this.setState({completed: this.state.completed + 1});
   },
 
   handleQuizStart: function (e) {
@@ -94,7 +96,7 @@ var TasksList = React.createClass({
                         <p dangerouslySetInnerHTML={{__html: task[1].replace(/\n/g, '<br>')}} />
                         
                         {(task[0] != "Quiz") ? 
-                          ((i >= this.state.completed) ? 
+                          ((i >= this.state.completed[this.props.currentLessonNumber]) ? 
                              <button type="button" className="btn btn-default btn-xs" data-index={i} onClick={this.handleTC}>
                               <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Completed
                              </button> :
