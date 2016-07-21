@@ -1,8 +1,21 @@
 var user1 = {
 	name: "John Smith",
-	history: [],
+	history: [
+		{
+			lessonNumber: 0,
+			date: "",
+			completed: false,
+			tasks: []
+		}, 
+		{
+			lessonNumber: 1,
+			date: "",
+			completed: false,
+			tasks: []
+		}
+	],
 	courses: [
-		{courseName: "", startDate: "", currentLessonNumber: "1", currentTaskNumber: "", preferences: [], lessonChoices: [0, 0]}
+		{courseName: "Reading", startDate: moment(), currentLessonNumber: 0, currentTaskNumber: 0, preferences: [], lessonChoices: [0, 0]}
 	],
 	/*
 	lessonChoices: list of the choice of each lesson from the course

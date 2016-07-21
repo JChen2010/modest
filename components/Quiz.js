@@ -1,3 +1,7 @@
+var React = require('react');
+var ReactRouter = require('react-router');
+var PropTypes = React.PropTypes;
+
 var QuestionPaper = React.createClass({
 
 	getInitialState: function() {
@@ -10,7 +14,7 @@ var QuestionPaper = React.createClass({
 
 	handleSubmitted: function(event) {
 		var result = {totalscore: this.state.totalscore};
-		this.props.onSubmitted( result );			
+		this.props.onSubmitted( result );
 		clearInterval(this.interval);
 	},
 
@@ -104,29 +108,6 @@ var Question = React.createClass({
 		);
 	}
 });
-
-var Scorecard = React.createClass({	
-
-	render: function(){
-		var status = "Test not submitted!";
-		if( this.props.testSubmitted == true ) {
-			if( this.props.percentage < 33 ) {
-				status = "Sorry, you could not pass the test. Try again later!"
-			} else {
-				status = "Congratulations!! You passed the test.";
-			}				
-		}
-
-		return(
-			<div className="list-group">
-				<div className="list-group-item active">Test Result</div>
-				<div className="list-group-item">Score: <strong>{this.props.score}</strong></div>
-				<div className="list-group-item">Percentage: <strong>{this.props.percentage}&nbsp;%</strong></div>
-				<div className="list-group-item">Status: <strong>{status}</strong></div>
-			</div>
-		);
-	}
-});
 	
 var Stopwatch = React.createClass({
 
@@ -140,23 +121,28 @@ var Stopwatch = React.createClass({
 	}
 });
 
-var Quiz = React.createClass({//Pass in: (details, [result, score], handleSubmitQuiz)
+var Quiz = React.createClass({//Pass in: (details, index, handleSubmitQuiz)
 
+	/*
 	propTypes: {
-	  	details: PropType.object.isRequired,
-	  	result: PropType.array.isRequired,
-	  	handleQE: PropType.func.isRequired
-	},
+	  	details: propTypes.object.isRequired,
+	  	handleQuizEnd: propTypes.func.isRequired,
+	  	index: propTypes.num.isRequied
+	},*/
 
 	getInitialState: function() {
 		return {
 			totalscore : 0,
 			quizSubmitted: false,
-			timeElapsed: this.props.details.time
+			timeElapsed: this.props.details.time,
+			totalmarks: 0,
+			first: true,
 		};
 	},
 
 	handleChange: function(result) {
+		console.log(result.totalscore);
+		this.props.handleQuizEnd(this.props.index, [result.totalscore, this.state.totalmarks]);
 		this.setState({totalscore: result.totalscore, testSubmitted: true});
 	},
 
@@ -169,11 +155,16 @@ var Quiz = React.createClass({//Pass in: (details, [result, score], handleSubmit
 		this.props.details.questions.map(function(question){
 			totalmarks += question.marks;
 		});
+		if(this.state.first){
+			this.setState({totalmarks: totalmarks, first: false});
+		}
+
 		return(
 			<div>					
 				<h1>{this.props.details.name}</h1>
 				<hr className="divider"/>
 				<div>{this.props.details.description}</div>
+				<br></br>
 				<table className="table">
 					<tr>
 						<td>
@@ -181,7 +172,6 @@ var Quiz = React.createClass({//Pass in: (details, [result, score], handleSubmit
 						 </td>
 						 <td>
 						  <Stopwatch timeElapsed={this.state.timeElapsed} />
-						  <Scorecard score={this.state.totalscore} quizSubmitted={this.state.quizSubmitted} percentage={Math.round(this.state.totalscore*100/totalmarks)}/>					
 						</td>
 					</tr>
 				</table>

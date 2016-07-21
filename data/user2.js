@@ -1,11 +1,19 @@
 var user1 = {
 	name: "John Smith",
-	history: [{
-		lessonNumber: 0,
-		date: "",
-		completed: false,
-		tasks: []
-	}],
+	history: [
+		{
+			lessonNumber: 0,
+			date: "",
+			completed: false,
+			tasks: []
+		}, 
+		{
+			lessonNumber: 1,
+			date: "",
+			completed: false,
+			tasks: []
+		}
+	],
 	//history: [{lessonNumber, date, completed, [{tasks}, ...]}, ...],
 	/*tasks:
 	{
@@ -14,7 +22,7 @@ var user1 = {
 		result: [2, 5]//[] if this task has no assessment
 	}*/
 	courses: [
-		{startDate: moment(), currentLessonNumber: 2, rating: 3,currentTaskNumber: "", lessonChoices: [1, 0]}
+		{startDate: moment(), currentLessonNumber: 2, rating: 3,currentTaskNumber: 0, lessonChoices: [0, 0]}
 	],
 	/*
 	lessonChoices: list of the choice of each lesson from the course

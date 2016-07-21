@@ -440,8 +440,9 @@ const CourseContainer = React.createClass({
     this.setState({history: newHistory});
   },*/
 
-    //Task complete button should call this function
+  //Task complete button should call this function
   //i = task number, result = [score, total] (pass in [] if no assessment)
+  //When course added, automatically add all lessons to user data history
   handleTaskComplete: function(i, result) {
     var newUser = this.state.user;
     var guides = this.state.guides;
@@ -572,6 +573,7 @@ const CourseContainer = React.createClass({
             task_mods={this.state.task_mods}
             current_lesson={this.state.guide_number}
             handleChangeLesson={this.handleChangeLesson}
+            handleTaskComplete={this.handleTaskComplete}
             course={this.state.guides}
             courseNum={this.state.courseNumber}
             user={this.state.user}
