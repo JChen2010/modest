@@ -9,6 +9,7 @@ var LessonsList = React.createClass({
     handleNextLesson: PropTypes.func.isRequired,
     course: PropTypes.array.isRequired,
     altLessonsIndex: PropTypes.array.isRequired,
+    handleTopRec: PropTypes.func.isRequired
     //user: PropTypes.object.isRequired
   },	
  
@@ -76,8 +77,8 @@ var LessonsList = React.createClass({
                   <div style={{display: "flex"}}>
                     {affinityButton}
                     <button type="button" className="list-group-item active" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[this.props.altLessonsIndex[i]][0]}</button>
-                    <button type="button" className="btn btn-default btn-xs">
-                      <span className="glyphicon glyphicon-star" aria-hidden="true"></span>Top Rec.
+                    <button type="button" className="btn btn-default btn-xs" onClick={this.props.handleTopRec}>
+                      <span className="glyphicon glyphicon-star" aria-hidden="true"></span>Top Rec
                     </button>
                     <button type="button" className="btn btn-default btn-xs" data-index={i} onClick={this.props.handleNextLesson}>
                       {/*<span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>*/}

@@ -252,12 +252,28 @@ const CourseContainer = React.createClass({
     newGuides[i][j] = tempLesson;
     var tempIndex = this.state.altLessonsIndex;
     tempIndex[i] = 0;
-    this.setState({guides: newGuides, altLessonsIndex: tempIndex});
+
+    var newUser = this.state.user;
+    var temp_rec = newUser.courses[this.state.courseNumber].recs[i][0];
+    newUser.courses[this.state.courseNumber].recs[i][0] = newUser.courses[this.state.courseNumber].recs[i][j];
+    newUser.courses[this.state.courseNumber].recs[i][j] = temp_rec;
+
+    this.setState({guides: newGuides, altLessonsIndex: tempIndex, user: newUser});
   },
 
-  //Placeholder code - this will bring up the list of alternative lessons
-  handleAltLessons: function(e) {
-    return;
+  //
+  handleTopRec: function() {
+    var temp = this.state.altLessonsIndex;
+    var rec_array = this.state.user.courses[this.state.courseNumber].recs[this.state.guide_number];
+    var max_index = 0;
+    for (var i = 0; i < rec_array.length; i++) {
+      if(rec_array[i] > rec_array[max_index]){
+        max_index = i;
+      }
+    }
+    temp[this.state.guide_number] = max_index;
+    this.setState({altLessonsIndex: temp});
+    this.handleLessonSwap;
   },
 
 
@@ -515,7 +531,7 @@ const CourseContainer = React.createClass({
     this.setState({altLessonsIndex: temp});
   },
 
-   handleNextLesson: function(e) {
+  handleNextLesson: function(e) {
     e.preventDefault();
     var index = e.target.getAttribute('data-index'); 
     //alert(index);
@@ -604,6 +620,7 @@ const CourseContainer = React.createClass({
             courseNum={this.state.courseNumber}
             user={this.state.user}
             altLessonsIndex={this.state.altLessonsIndex}
+            handleTopRec={this.handleTopRec}
           />
           
         {/*Old UI*/}

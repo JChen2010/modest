@@ -32,6 +32,7 @@ function Course (props) {
             </div>
             {/*Lessons list*/}
             <LessonsList 
+                handleTopRec={props.handleTopRec}
                 current_lesson={props.current_lesson}
                 handleChangeLesson={props.handleChangeLesson}
                 handleNextLesson={props.handleNextLesson}
@@ -73,7 +74,8 @@ Course.propTypes = {
     user: PropTypes.object.isRequired,
     handleTaskComplete: PropTypes.func.isRequired,
     handleLessonSwap: PropTypes.func.isRequired,
-    altLessonsIndex: PropTypes.array.isRequired
+    altLessonsIndex: PropTypes.array.isRequired,
+    handleTopRec: PropTypes.func.isRequired
 }
 
 module.exports = Course;
