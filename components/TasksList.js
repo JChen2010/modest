@@ -2,6 +2,9 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var PropTypes = React.PropTypes;
 
+var DropdownButton = require('react-bootstrap').SplitButton;
+var MenuItem = require('react-bootstrap').MenuItem;
+
 var Quiz = require('./Quiz');
 
 var Scorecard = React.createClass({ 
@@ -81,14 +84,28 @@ var TasksList = React.createClass({
                     </div>
                     <div className="panel-body">
                         <p dangerouslySetInnerHTML={{__html: task[1].replace(/\n/g, '<br>')}} />
-                        {(task[0] != "Quiz") ? "" : <button type="button" className="btn btn-warning" data-index={i} onClick={this.handleQuizStart}>Start</button>}
+                        
+                        {(task[0] != "Quiz") ? 
+                          <button type="button" className="btn btn-default btn-xs" data-index={i} onClick={this.props.handleTaskComplete}>
+                            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Completed
+                          </button> : 
+                          <button type="button" className="btn btn-warning" data-index={i} onClick={this.handleQuizStart}>Start</button>}
+                        
                         <br></br><br></br>
                         {(task[0] != "Quiz") ? "" : <Scorecard score={this.state.result[0]} percentage={Math.round(this.state.result[0]*100/this.state.result[1])}/>}
                     </div>
                 </div>
               )
             }.bind(this))
-          } 
+          }
+          {/*Raitings*/}
+
+          <DropdownButton bsStyle="info" title="Please, rate this lesson!">
+            <MenuItem>Wonderful, just what I need</MenuItem>
+            <MenuItem>It is ok, quite useful</MenuItem>
+            <MenuItem>Somehow useful</MenuItem>
+            <MenuItem>Waste of time</MenuItem>
+          </DropdownButton>
         </div>
 	    )
   }

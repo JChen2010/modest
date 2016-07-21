@@ -81,6 +81,9 @@ const CourseContainer = React.createClass({
 
       user: userData,
 
+      
+
+
       //Deprecated - alternate lessons instead stored in data
       //available_tasks: "",
 
