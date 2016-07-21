@@ -31,13 +31,10 @@ var Scorecard = React.createClass({
 var TasksList = React.createClass({
   propTypes: {
     lesson: PropTypes.array.isRequired,
-<<<<<<< HEAD
     //lessonName: PropTypes.string.isRequired,
-    handleTaskComplete: PropTypes.func.isRequired  
-=======
     handleTaskComplete: PropTypes.func.isRequired,
     currentLessonNumber: PropTypes.number.isRequired
->>>>>>> 9de6c836206e8fca376a6b21c2cd23aac887b487
+
   },	
   
   getInitialState: function () {
@@ -126,24 +123,18 @@ var TasksList = React.createClass({
               )
             }.bind(this))
           }
-<<<<<<< HEAD
-          {/*Raitings
 
-=======
           {/*Ratings*/}
           {/*
->>>>>>> 9de6c836206e8fca376a6b21c2cd23aac887b487
           <DropdownButton bsStyle="info" title="Please, rate this lesson!">
             <MenuItem>Wonderful, just what I need</MenuItem>
             <MenuItem>It is ok, quite useful</MenuItem>
             <MenuItem>Somehow useful</MenuItem>
             <MenuItem>Waste of time</MenuItem>
-<<<<<<< HEAD
           </DropdownButton>
           */}
-=======
-          </DropdownButton>*/}
->>>>>>> 9de6c836206e8fca376a6b21c2cd23aac887b487
+
+        
         </div>
 	    )
   }
