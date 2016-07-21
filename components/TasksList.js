@@ -2,8 +2,8 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var PropTypes = React.PropTypes;
 
-var DropdownButton = require('react-bootstrap').SplitButton;
-var MenuItem = require('react-bootstrap').MenuItem;
+//var DropdownButton = require('react-bootstrap').DropdownButton;
+//var MenuItem = require('react-bootstrap').MenuItem;
 
 var Quiz = require('./Quiz');
 
@@ -31,8 +31,13 @@ var Scorecard = React.createClass({
 var TasksList = React.createClass({
   propTypes: {
     lesson: PropTypes.array.isRequired,
+<<<<<<< HEAD
     //lessonName: PropTypes.string.isRequired,
     handleTaskComplete: PropTypes.func.isRequired  
+=======
+    handleTaskComplete: PropTypes.func.isRequired,
+    currentLessonNumber: PropTypes.number.isRequired
+>>>>>>> 9de6c836206e8fca376a6b21c2cd23aac887b487
   },	
   
   getInitialState: function () {
@@ -40,12 +45,21 @@ var TasksList = React.createClass({
       Quiz: false,
       QuizContent: {},
       index: 0,
-      result: [0, 0]
+      result: [0, 0],
+      completed: [0, 0, 0, 0, 0, 0]
     }
   },
 
+  handleTC: function (e) {
+    var index = e.target.getAttribute('data-index');
+    var temp = this.state.completed;
+    temp[this.props.currentLessonNumber]++;
+    this.setState({completed: temp});
+    this.props.handleTaskComplete(index, []);
+  },
+
   handleQuizStart: function (e) {
-    var index = e.target.getAttribute('data-index'); 
+    var index = e.target.getAttribute('data-index');
     this.setState({
       index: index,
       QuizContent: this.props.lesson[index][2],
@@ -89,18 +103,22 @@ var TasksList = React.createClass({
               return (   
                 <div className="panel panel-default">
                     <div className="panel-heading">
-                        <h2 className="panel-title">{task[0]}</h2>
+                        <h2 className="panel-title"><b>{task[0]}</b></h2>
                         <h6>Time: {(task[0] != "Quiz") ? task[2] : task[2].time} min</h6>
                     </div>
                     <div className="panel-body">
                         <p dangerouslySetInnerHTML={{__html: task[1].replace(/\n/g, '<br>')}} />
                         
                         {(task[0] != "Quiz") ? 
-                          <button type="button" className="btn btn-default btn-xs" data-index={i} onClick={this.props.handleTaskComplete}>
-                            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Completed
-                          </button> : 
+                          ((i >= this.state.completed[this.props.currentLessonNumber]) ? 
+                             <button type="button" className="btn btn-default btn-xs" data-index={i} onClick={this.handleTC}>
+                              <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Completed
+                             </button> :
+                             <button type="button" className="btn btn-success btn-xs" data-index={i} onClick={this.handleTC}>
+                              <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Completed
+                             </button>
+                             ) : 
                           <button type="button" className="btn btn-warning" data-index={i} onClick={this.handleQuizStart}>Start</button>}
-                        
                         <br></br><br></br>
                         {(task[0] != "Quiz") ? "" : <Scorecard score={this.state.result[0]} percentage={Math.round(this.state.result[0]*100/this.state.result[1])}/>}
                     </div>
@@ -108,15 +126,24 @@ var TasksList = React.createClass({
               )
             }.bind(this))
           }
+<<<<<<< HEAD
           {/*Raitings
 
+=======
+          {/*Ratings*/}
+          {/*
+>>>>>>> 9de6c836206e8fca376a6b21c2cd23aac887b487
           <DropdownButton bsStyle="info" title="Please, rate this lesson!">
             <MenuItem>Wonderful, just what I need</MenuItem>
             <MenuItem>It is ok, quite useful</MenuItem>
             <MenuItem>Somehow useful</MenuItem>
             <MenuItem>Waste of time</MenuItem>
+<<<<<<< HEAD
           </DropdownButton>
           */}
+=======
+          </DropdownButton>*/}
+>>>>>>> 9de6c836206e8fca376a6b21c2cd23aac887b487
         </div>
 	    )
   }

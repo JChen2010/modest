@@ -51,7 +51,11 @@ function Course (props) {
             lesson={props.course[props.current_lesson][props.altLessonsIndex[props.current_lesson]][1]}
             lessonName={props.course[props.current_lesson][props.altLessonsIndex[props.current_lesson]][0]}
             handleTaskComplete={props.handleTaskComplete}
+<<<<<<< HEAD
 
+=======
+            currentLessonNumber={props.current_lesson}
+>>>>>>> 9de6c836206e8fca376a6b21c2cd23aac887b487
         />
     </div>
   )

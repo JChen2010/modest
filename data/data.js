@@ -98,7 +98,7 @@ var reading =
 						questions: [
 							{
 							no: "1",
-							qtext: "The word “pose” on line 2 is closest in meaning to",
+							qtext: "The word “pose” on line 2 is closest in meaning to:",
 							options: [{text: "Claim" }, {text: "Model"}, {text: "Assume"}, {text: "Present"}], 
 							ans: "Present",
 							marks: 1
@@ -129,6 +129,54 @@ var reading =
 							}
 						]
 					}	
+				]
+			]
+		]
+	],
+
+	[
+		["Article Reading I",
+			[
+				["Read Article",
+					"Read article at http://www.nytimes.com/2016/07/21/business/dealbook/hsbc-foreign-exchange-investigation-currency.html on HSBC's foreign exchange investigation currency.",
+					20
+				],
+
+				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40]
+			]
+		],
+
+		["Summarization - Wonderland",
+			[
+				["Read Article",
+				"Read article at http://blog.wonderland.com/new-rides-this-season", 20
+				],
+
+				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40
+				]
+			]
+		]
+	],
+
+	[
+		["Article Reading II",
+			[
+				["Read Article",
+					"Read article at http://www.nytimes.com/2016/07/21/business/dealbook/hsbc-foreign-exchange-investigation-currency.html on HSBC's foreign exchange investigation currency.",
+					20
+				],
+
+				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40]
+			]
+		],
+
+		["Summarization - Wonderland",
+			[
+				["Read Article",
+				"Read article at http://blog.wonderland.com/new-rides-this-season", 20
+				],
+
+				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40
 				]
 			]
 		]

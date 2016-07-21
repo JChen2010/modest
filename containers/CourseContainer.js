@@ -110,25 +110,12 @@ const CourseContainer = React.createClass({
             classNames: [ 'current' ],
             component: [ 'week' ]
           },
-        /* Template for adding events
+        /* Template for adding events*/
         {
-          date: moment().add(10, 'days'),
+          date: moment().add(0, 'days'),
           classNames: [ 'event', 'warning' ],
           component: [ 'day' ],
-          events: {
-            onClick: (date, e) => {
-              var message = date.format('D');
-              this.setState({currentPopup: 
-                (<Popup url='popup.html' 
-                        title='Daily Tasks' 
-                        onClosing={this.popupClosed}>
-                  <div>Empty</div>
-                </Popup>),
-                isPoppedup: true
-              });
-            }
-          }
-        },*/
+        },
         {
           component: 'day',
           events: {
@@ -448,16 +435,18 @@ const CourseContainer = React.createClass({
   //Task complete button should call this function
   //i = task number, result = [score, total] (pass in [] if no assessment)
   //When course added, automatically add all lessons to user data history
-  handleTaskComplete: function(i, result) {
+  //History updating broken, need to fix
+  handleTaskComplete: function(i, result, e) {
     var newUser = this.state.user;
     var guides = this.state.guides;
     var cn = this.state.courseNumber;
-    if (newUser.courses[cn].currentTaskNumber == guides[newUser.courses[cn].currentLessonNumber][0][1].length){
+    var currentLessonNumber = newUser.courses[cn].currentLessonNumber;
+    if (newUser.courses[cn].currentTaskNumber == guides[currentLessonNumber][0][1].length){
 
       //Modify user history
-      newUser.history[cn].completed = true;
-      newUser.history[cn].date = moment();
-      newUser.history[cn].tasks.push({
+      newUser.history[currentLessonNumber].completed = true;
+      newUser.history[currentLessonNumber].date = moment();
+      newUser.history[currentLessonNumber].tasks.push({
           taskNumber: i,
           date: moment(),
           result: result
