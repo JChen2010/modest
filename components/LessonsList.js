@@ -26,7 +26,18 @@ var LessonsList = React.createClass({
           {
             this.props.course.map(function(lesson, i){
               if (i == this.props.current_lesson) {
-                return  <button type="button" className="list-group-item active" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[0][0]}</button>;
+                return (
+                  <div style={{display: "flex"}}>
+                    <button type="button" className="list-group-item active" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[0][0]}</button>
+                    <button type="button" className="btn btn-default btn-xs">
+                      <span className="glyphicon glyphicon-star" aria-hidden="true"></span>Top
+                    </button>
+                    <button type="button" className="btn btn-default btn-xs">
+                      <span className="glyphicon glyphicon-chevron-right" aria-hidden="true" data-index={i} onClick={this.props.handleNextLesson}></span>More
+                    </button>
+                  </div>
+
+                )
               } else {
                 return  <button type="button" className="list-group-item" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[0][0]}</button>;
               }
