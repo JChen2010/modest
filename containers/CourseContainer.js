@@ -62,7 +62,7 @@ const CourseContainer = React.createClass({
     return {
       date: moment().startOf('month'),
       courseNumber: 0,  //take from props
-      guide_number: userData.courses[0].currentLessonNumber, //0 - courseNumber - take from props
+      guide_number: parseInt(userData.courses[0].currentLessonNumber), //0 - courseNumber - take from props
       number_submit: "",
       guide_tasks: "",
 
@@ -507,7 +507,7 @@ const CourseContainer = React.createClass({
   handleChangeLesson: function(e) {
     var index = e.target.getAttribute('data-index'); 
     this.setState({
-      guide_number: index
+      guide_number: parseInt(index)
     });
   },
 
