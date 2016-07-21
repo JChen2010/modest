@@ -141,7 +141,6 @@ var Quiz = React.createClass({//Pass in: (details, index, handleSubmitQuiz)
 	},
 
 	handleChange: function(result) {
-		console.log(result.totalscore);
 		this.props.handleQuizEnd(this.props.index, [result.totalscore, this.state.totalmarks]);
 		this.setState({totalscore: result.totalscore, testSubmitted: true});
 	},
