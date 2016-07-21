@@ -23,41 +23,6 @@ var reading =
 			]
 		]
 	],
-	
-	[
-		["Article Jigsaw - Thumb Sucking",
-			[
-				["Read Article", 
-					"Read article at http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032)", 20
-				],
-
-				["Unscramble", 
-				"The passage in the link below is the same as the article above with the paragraphs out of order. Put the paragraphs back in order. http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032/reorder", 20]
-			]
-		],
-
-		["Article Jigsaw - Climate",
-			[
-				["Read Article", 
-					"Read article at http://phys.org/news/2016-07-north-american-forests-climate.html)", 15
-				],
-
-				["Unscramble", 
-				"The passage in the link below is the same as the article above with the paragraphs out of order. Put the paragraphs back in order. http://phys.org/news/2016-07-north-american-forests-climate.htmlreorder", 20]
-			]
-		],
-
-		["Article Jigsaw - Health Insurance",
-			[
-				["Read Article",
-					"Read article at http://www.nytimes.com/2016/07/21/business/failure-of-2-health-insurer-mergers-is-unlikely-to-stop-the-efforts.html?ref=business", 20],
-
-				["Unscramble", 
-					"The passage in the link below is the same as the article above with the paragraphs out of order. Put the paragraphs back in order. http://www.nytimes.com/2016/07/21/business/failure-of-2-health-insurer-mergers-is-unlikely-to-stop-the-efforts.html?ref=business/reorder", 20]
-			]
-		],
-
-	],
 
 	[
 		["Paragraph Headlines - Climate",
@@ -75,6 +40,41 @@ var reading =
 				]
 			]
 		]
+	],
+
+	[
+		["Article Jigsaw - Thumb Sucking",
+			[
+				["Read Article", 
+					"Read article at <b>http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032</b>.\nTip: Take note of the flow from one paragraph to the next.", 20
+				],
+
+				["Unscramble", 
+				"The passage in the link below is the same as the article above with the paragraphs out of order. \nPut the paragraphs back in order:\n<b>http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032/reorder</b>", 20]
+			]
+		],
+
+		["Article Jigsaw - Climate",
+			[
+				["Read Article", 
+					"Read article at http://phys.org/news/2016-07-north-american-forests-climate.html.", 15
+				],
+
+				["Unscramble", 
+				"The passage in the link below is the same as the article above with the paragraphs out of order. Put the paragraphs back in order. http://phys.org/news/2016-07-north-american-forests-climate.htmlreorder", 20]
+			]
+		],
+
+		["Article Jigsaw - Health Insurance",
+			[
+				["Read Article",
+					"Read article at http://www.nytimes.com/2016/07/21/business/failure-of-2-health-insurer-mergers-is-unlikely-to-stop-the-efforts.html?ref=business", 20],
+
+				["Unscramble", 
+					"The passage in the link below is the same as the article above with the paragraphs out of order. Put the paragraphs back in order. http://www.nytimes.com/2016/07/21/business/failure-of-2-health-insurer-mergers-is-unlikely-to-stop-the-efforts.html?ref=business/reorder", 20]
+			]
+		],
+
 	],
 
 	[
