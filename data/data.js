@@ -46,11 +46,11 @@ var reading =
 		["Article Jigsaw - Thumb Sucking",
 			[
 				["Read Article", 
-					"Read article at <b>http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032</b>.\nTip: Take note of the flow from one paragraph to the next.", 20
+					"Read article at:\n <b>http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032</b>.\nThis article describe the upsides of thumb sucking and nail biting.\nTip: Take note of the flow from one paragraph to the next.", 20
 				],
 
 				["Unscramble", 
-				"The passage in the link below is the same as the article above with the paragraphs out of order. \nPut the paragraphs back in order:\n<b>http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032/reorder</b>", 20]
+				"The passage in the link below is the same as the article above with the paragraphs out of order. Put the paragraphs back in order:\n<b>http://www.health.harvard.edu/blog/upside-thumb-sucking-nail-biting-2016071910032/reorder</b>", 20]
 			]
 		],
 
@@ -138,7 +138,7 @@ var reading =
 		["Article Reading I",
 			[
 				["Read Article",
-					"Read article at http://www.nytimes.com/2016/07/21/business/dealbook/hsbc-foreign-exchange-investigation-currency.html on HSBC's foreign exchange investigation currency.",
+					"Read article at:\n http://www.nytimes.com/2016/07/21/business/dealbook/hsbc-foreign-exchange-investigation-currency.html\n This article describes HSBC's foreign exchange investigation currency.",
 					20
 				],
 
@@ -149,7 +149,7 @@ var reading =
 		["Summarization - Wonderland",
 			[
 				["Read Article",
-				"Read article at http://blog.wonderland.com/new-rides-this-season", 20
+				"Read article at:\n http://blog.wonderland.com/new-rides-this-season\n This article describes Wonderland's new rides this season.", 20
 				],
 
 				["Summarize", "Write a 500 word summary of the article and bring it in to class tomorrow.", 40
