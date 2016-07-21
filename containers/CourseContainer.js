@@ -21,7 +21,7 @@ var Course = require('../components/Course');
 require('../less/bootstrap-theme.less');
 
 //this course file should be selected and passed in as a prop from course selector, working with this for now
-var testData = require('../data/Course2.js');
+var testData = require('../data/data.js');
 var userData = require('../data/user1.js');
 
 
@@ -93,6 +93,8 @@ const CourseContainer = React.createClass({
 
       isPoppedup: false,
       currentPopup: <div></div>,
+      altLessonsIndex: [],
+      first: true, //for initialization purposes
 
       history: [],
       task_number: "",
@@ -514,9 +516,17 @@ const CourseContainer = React.createClass({
       guide_number: parseInt(index)
     });
   },
-
   
   render: function () {
+
+    var altLessonsIndex = this.state.altLessonsIndex;
+    if(this.state.first){
+      for (var i = 0; i < this.state.guides.length; i++) {
+        altLessonsIndex.push(0);
+      }
+      this.setState({first: false, altLessonsIndex: altLessonsIndex});
+    }
+
     var popup = "";
     if (this.state.isPoppedup){
       popup = this.state.currentPopup;
