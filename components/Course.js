@@ -59,7 +59,8 @@ Course.propTypes = {
     course: PropTypes.array.isRequired,
     courseNum: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired,
-    handleTaskComplete: PropTypes.func.isRequired
+    handleTaskComplete: PropTypes.func.isRequired,
+    currentTaskNumber: PropTypes.number.isRequired
 }
 
 module.exports = Course;

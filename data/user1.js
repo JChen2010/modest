@@ -12,7 +12,19 @@ var user1 = {
 			date: "",
 			completed: false,
 			tasks: []
-		}
+		},
+		{
+			lessonNumber: 2,
+			date: "",
+			completed: false,
+			tasks: []
+		},
+		{
+			lessonNumber: 3,
+			date: "",
+			completed: false,
+			tasks: []
+		},
 	],
 	courses: [
 		{courseName: "Reading", startDate: moment(), currentLessonNumber: 2, currentTaskNumber: 0, preferences: [], lessonChoices: [0, 0]}

@@ -98,7 +98,7 @@ var reading =
 						questions: [
 							{
 							no: "1",
-							qtext: "The word “pose” on line 2 is closest in meaning to",
+							qtext: "The word “pose” on line 2 is closest in meaning to:",
 							options: [{text: "Claim" }, {text: "Model"}, {text: "Assume"}, {text: "Present"}], 
 							ans: "Present",
 							marks: 1
