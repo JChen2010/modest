@@ -7,6 +7,7 @@ import Week from '../src/Week';
 import Month from '../src/Month';
 
 var LessonsList = require('../components/LessonsList');
+var TasksList = require('../components/TasksList');
 
 function Course (props) {
   return (
@@ -44,32 +45,9 @@ function Course (props) {
         </div>
 
         {/*Current tasks*/}
-        <div className="tasks-list">
-            <div className="panel panel-default">
-                <div className="panel-heading">
-                    <h2 className="panel-title">Task 1</h2>
-                    <h6>Time: 30 min</h6>
-                </div>
-                <div className="panel-body">
-                    <p>Please, read everything here.</p>
-                    <p>Current lesson {props.current_lesson}</p>
-                </div>
-            </div>
-
-            <div className="panel panel-default">
-                <div className="panel-heading">
-                    <h2 className="panel-title">Task 2</h2>
-                    <h6>Time: 40 min</h6>
-                </div>
-                <div className="panel-body">
-                    <p>Please, answer these questions:</p>
-                    <p>Who?</p>
-                    <p>What?</p>
-                    <p>When?</p>
-                    <p>Why?</p>
-                </div>
-            </div>
-        </div>
+        <TasksList
+            lesson={props.course[props.current_lesson][0][1]}
+        />
 
     		
     </div>
