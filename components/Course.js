@@ -83,7 +83,6 @@ Course.propTypes = {
     courseNum: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired
 
-
 }
 
 module.exports = Course;
