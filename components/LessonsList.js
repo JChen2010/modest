@@ -2,6 +2,8 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var PropTypes = React.PropTypes;
 
+var Affinity = require('./Affinity');
+
 var LessonsList = React.createClass({
   propTypes: {
   	current_lesson: PropTypes.number.isRequired,
@@ -23,6 +25,7 @@ var LessonsList = React.createClass({
               if (i == this.props.current_lesson) {
 
                 //Find affinity rating (expected rating/5 * 100)
+                /*
                 var affinityScore;
                 if(this.props.user.courses[0].recs[this.props.current_lesson][this.props.altLessonsIndex[this.props.current_lesson]] != 0){
                   affinityScore = "Affinity: ";
@@ -71,11 +74,16 @@ var LessonsList = React.createClass({
                             {affinityScore}
                       </button>
                   }
-                }
+                }*/
 
                 return (
                   <div style={{display: "flex"}}>
-                    {affinityButton}
+                    <Affinity
+                      current_lesson={this.props.current_lesson}
+                      user={this.props.user}
+                      altLessonsIndex={this.props.altLessonsIndex}
+                      course={this.props.course}
+                    />
                     <button type="button" className="list-group-item active" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[this.props.altLessonsIndex[i]][0]}</button>
                     <button type="button" className="btn btn-default btn-xs" onClick={this.props.handleTopRec}>
                       <span className="glyphicon glyphicon-star" aria-hidden="true"></span>Top Rec
@@ -86,7 +94,6 @@ var LessonsList = React.createClass({
                     </button>
                   
                   </div>
-
                 )
               } else {
                 return  <button type="button" className="list-group-item" data-index={i} onClick={this.props.handleChangeLesson}>{lesson[0][0]}</button>;
