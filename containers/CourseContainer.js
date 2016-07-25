@@ -81,8 +81,6 @@ const CourseContainer = React.createClass({
 
       user: userData,
 
-      
-
 
       //Deprecated - alternate lessons instead stored in data
       //available_tasks: "",
@@ -214,25 +212,6 @@ const CourseContainer = React.createClass({
     tasks = tasks.replace(/<br>/g, '\n');
     alert(tasks);
   },
-
-//Deprecated - swapping lessons instead of tasks
-/*
-  handleSwap1: function(e) {
-    this.setState({swap1: e.target.value})
-  },
-
-  handleSwap2: function(e) {
-    this.setState({swap2: e.target.value});
-  },
-
-  handleSwap: function(e) {
-    var swappedTask = this.state.guides;
-    swappedTask[this.state.guide_number - 1][0][1][this.state.swap1 - 1] = 
-    this.state.available_tasks[this.state.swap2 - 1];
-    this.setState({guides: swappedTask, isPoppedup: false});
-    alert("Swap complete!");
-  },
-*/
 
   //***written to work with new structure***
   //when you click on the guide you want to swap, have that button trigger this function
@@ -548,6 +527,7 @@ const CourseContainer = React.createClass({
 
     var altLessonsIndex = this.state.altLessonsIndex;
     if(this.state.first){
+      //Sorting code goes here
       for (var i = 0; i < this.state.guides.length; i++) {
         altLessonsIndex.push(0);
       }
@@ -622,97 +602,6 @@ const CourseContainer = React.createClass({
             altLessonsIndex={this.state.altLessonsIndex}
             handleTopRec={this.handleTopRec}
           />
-          
-        {/*Old UI*/}
-          <br></br>
-          <form onClick={this.viewGuideInput}>
-            <input
-                type="button"
-                value="Go to lesson planning"/>
-          </form>
-          <br></br>
-          
-          {/*----- Schedule -----*/}
-          <b>Schedule</b>
-          <hr></hr>
-          <Calendar 
-              weekNumbers={ true }
-              startDate={ this.state.date }
-              date={ this.state.date }
-              endDate={ this.state.date.clone().add(0, 'month') }
-              mods={this.state.start_mods.concat(this.state.task_mods)
-              /*
-              [
-                {
-                  date: moment(),
-                  classNames: [ 'current' ],
-                  component: [ 'week' ]
-                },
-                {
-                  startDate: moment().add(3, 'days'),
-                  endDate: moment().add(7, 'days'),
-                  classNames: [ 'longEvent' ],
-                  component: [ 'day' ]
-                },
-                {
-                  date: moment().add(3, 'days'),
-                  classNames: [ 'appointment' ],
-                  component: [ 'day' ]
-                },
-                {
-                  date: moment().add(10, 'days'),
-                  classNames: [ 'event', 'warning' ],
-                  component: [ 'day' ],
-                  events: {
-                    onClick: (date, e) => alert(`${date.format('dddd')}'s event!`)
-                  }
-                },
-                {
-                  date: moment().add(5, 'days'),
-                  classNames: [ 'event' ],
-                  component: [ 'day' ]
-                },
-                {
-                  component: 'day',
-                  events: {
-                    onClick: (date, e) => alert("Task: \n" + this.state.title_submit + "\n\nDetails:\n" + this.state.details_submit)
-                  }
-                }
-              ]*/
-              } 
-          />
-
-          <br></br>
-
-          {/*Guide List*/}
-          <p><b>Available Lessons:</b></p>
-          <p className="box1"
-            dangerouslySetInnerHTML={{__html: outputGuides(this.state.guides)}} />
-
-          {/*Guide Options*/}
-          {/* Deprecated
-          <GuideOptions
-            guide_number={ this.state.guide_number }
-
-            handleVT={ this.handleViewTasks } //task submit
-            handleAG={ this.handleAddGuide } //guide submit
-            handleEG={ this.handleEditGuide } //guide submit
-
-            handleNC = { this.handleNumberChange } //task title change
-          />/*}
-
-          {/*History*/}
-          {/* Deprecated
-          <History
-            history={ this.state.history }
-          />*/}
-          <div>{popup}</div>
-          {/*Reset Button*/}
-          <br></br><form onSubmit={this.clear}>
-            <input 
-              type="submit"
-              value="Reset"/>
-          </form><br></br>
         </div>
       );
     }

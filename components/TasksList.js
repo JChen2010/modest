@@ -89,7 +89,7 @@ var TasksList = React.createClass({
     if(this.props.altLessonsIndex[this.props.currentLessonNumber] != 0){
       study =            
         <button type="button" className="btn btn-default btn-sm" onClick={this.props.handleLessonSwap}>
-          <span className="glyphicon glyphicon-edit" aria-hidden="true"></span> Study
+          <span className="glyphicon glyphicon-edit" aria-hidden="true"></span> Choose this Lesson
         </button>;
     } else {
       study =
