@@ -15,7 +15,9 @@
     "url": "https://github.com/freiksenet/react-calendar.git"
   },
   "dependencies": {
-    "classnames": "^2.2.3"
+    "classnames": "^2.2.3",
+    "react-bootstrap": "^0.30.0-rc.1",
+    "react-router": "^2.5.2"
   },
   "peerDependencies": {
     "moment": "^2.8.3",
@@ -68,8 +70,8 @@
     "prepublish": "webpack",
     "umd": "REACT_CALENDAR_WEBPACK=umd webpack",
     "umd-min": "REACT_CALENDAR_WEBPACK=umd_min webpack",
-    "demo": "REACT_CALENDAR_WEBPACK=umd webpack --entry ./demo.js",
-    "start": "REACT_CALENDAR_WEBPACK=server webpack-dev-server -d --entry ./demo.js --hot --progress --colors --inline",
+    "demo": "REACT_CALENDAR_WEBPACK=umd webpack --entry ./index.js",
+    "start": "webpack-dev-server -d --entry ./index.js",
     "gh-pages": "./scripts/gh-pages.sh"
   }
 }

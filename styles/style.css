@@ -1,0 +1,59 @@
+.nextMonth {
+	float: right;
+}
+
+.button {
+  margin-right: 25px;
+  display: inline-block;
+}
+
+.courseselector {
+	width: 250px;
+	height: 200px;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #EEEEEE;
+	margin: 20px;
+	display: inline-block;
+}
+
+.selectorGo {
+	top: 200px;
+	font-size: 20px;
+}
+
+.bg-light {
+	background-color: #EEEEEE;
+}
+
+.nav-header {
+	background: #EEEEEE;
+}
+
+.nav {
+	background-color: #FBFBFB;
+	width: 35%;
+	margin: 5px;
+	border-radius: 5px
+	
+}
+
+.main-container {
+	display: flex;
+}
+
+.progress {
+	margin: 15px;
+}
+
+.tasks-list {
+	width: 65%;
+	margin: 5px;
+	background-color: #FBFBFB;
+	border-radius: 5px
+}
+
+#lesson_header {
+	display: flex;
+	justify-content: space-between;
+}

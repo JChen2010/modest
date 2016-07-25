@@ -57,7 +57,7 @@ export default class Calendar extends Component {
 
     return (
       <div>
-        { this.renderHeader() }
+        {/* this.renderHeader() */}
         {
           this.getMonthRange().map((date, i) =>
            <Month key={ `month-${i}` }
