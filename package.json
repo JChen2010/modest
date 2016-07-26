@@ -1,11 +1,11 @@
 {
-  "name": "react-firebase",
+  "name": "e-Platform",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "webpack-dev-server",
     "build:prod": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:prod:win": "set NODE_ENV=production&& webpack --config webpack.config.prod.js",
     "copy:prod": "cp index.html dist/index.html && cp style.css dist/style.css",
@@ -18,7 +18,7 @@
   "dependencies": {
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-intl": "^2.1.3",
+    "react-intl": "^2.1.3"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
@@ -26,6 +26,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
+    "html-webpack-plugin": "^2.22.0",
     "react-hot-loader": "^1.3.0",
     "redux-devtools": "^3.3.1",
     "webpack": "^1.13.1",

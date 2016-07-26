@@ -40,16 +40,6 @@ function Course (props) {
                 altLessonsIndex={props.altLessonsIndex}
                 user={props.user}
             />
-            {/*Calendar*/}
-            <div className="panel panel-default bg-info">
-                <Calendar 
-                    weekNumbers={true}
-                    startDate={props.date}
-                    date={props.date}
-                    endDate={props.date.clone().add(0, 'month')}
-                    mods={props.start_mods.concat(props.task_mods)} 
-                />
-            </div>
         </div>
 
         {/*Current tasks*/}

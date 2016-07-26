@@ -18,8 +18,6 @@ import Popup from '../components/Popup';
 
 var Course = require('../components/Course');
 
-require('../less/bootstrap-theme.less');
-
 //this course file should be selected and passed in as a prop from course selector, working with this for now
 var testData = require('../data/data.js');
 var userData = require('../data/user1.js');

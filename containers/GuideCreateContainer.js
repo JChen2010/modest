@@ -8,8 +8,6 @@ import Month from '../src/Month';
 
 import Guides from '../components/GuideCreate';
 
-require('../less/bootstrap-theme.less');
-
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
