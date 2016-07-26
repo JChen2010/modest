@@ -1,3 +1,7 @@
+import firebaseConfig from './constants/firebase.js';
+import firebase from 'firebase';
+firebase.initializeApp(firebaseConfig);
+
 import moment from 'moment';
 import React from 'react';
 import ReactDOM from 'react-dom';
