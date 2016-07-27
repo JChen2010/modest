@@ -5,4 +5,4 @@ const firebaseConfig = {
   storageBucket: 'modest-f4a41.appspot.com'
 };
 
-export default firebaseConfig;
+module.exports = firebaseConfig;
