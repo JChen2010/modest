@@ -89,7 +89,7 @@ const CourseContainer = React.createClass({
 
       isPoppedup: false,
       currentPopup: <div></div>,
-      altLessonsIndex: [],
+      altLessonsIndex: [], //alternatives selected to view
       first: true, //for initialization purposes
 
       history: [],
@@ -508,17 +508,17 @@ const CourseContainer = React.createClass({
     this.setState({altLessonsIndex: temp});
   },
 
-  handleNextLesson: function(e) {
-    e.preventDefault();
-    var index = e.target.getAttribute('data-index'); 
-    //alert(index);
+  handleChangeAlternative: function(e) {
+    var les_index = e.target.getAttribute('data-les-index');
+    var alt_index = e.target.getAttribute('data-alt-index'); 
+
     var altLessonsIndexTemp = this.state.altLessonsIndex;
-    if (altLessonsIndexTemp[index] < this.state.guides[index].length - 1) {
-      altLessonsIndexTemp[index] += 1;
-    };   
+    altLessonsIndexTemp[les_index] = alt_index;
+    
     this.setState({
       altLessonsIndex: altLessonsIndexTemp
     });
+
   },
   
   render: function () {
@@ -591,7 +591,7 @@ const CourseContainer = React.createClass({
             task_mods={this.state.task_mods}
             current_lesson={this.state.guide_number}
             handleChangeLesson={this.handleChangeLesson}
-            handleNextLesson={this.handleNextLesson}
+            handleChangeAlternative={this.handleChangeAlternative}
             handleTaskComplete={this.handleTaskComplete}
             handleLessonSwap={this.handleLessonSwap}
             course={this.state.guides}

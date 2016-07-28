@@ -32,7 +32,7 @@
 
 .nav {
 	background-color: #FBFBFB;
-	width: 35%;
+	width: 30%;
 	margin: 5px;
 	border-radius: 5px
 	
@@ -56,4 +56,19 @@
 #lesson_header {
 	display: flex;
 	justify-content: space-between;
+}
+
+#lessons-list {
+	width: 96%;
+	margin: 2%;
+}
+
+#lessons-list button {
+	text-align: left;
+}
+
+
+
+html {
+  overflow-y: scroll; //always show scroll bar - prevents unexpected window shifts
 }

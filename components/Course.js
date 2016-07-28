@@ -35,7 +35,7 @@ function Course (props) {
                 handleTopRec={props.handleTopRec}
                 current_lesson={props.current_lesson}
                 handleChangeLesson={props.handleChangeLesson}
-                handleNextLesson={props.handleNextLesson}
+                handleChangeAlternative={props.handleChangeAlternative}
                 course={props.course}
                 altLessonsIndex={props.altLessonsIndex}
                 user={props.user}
@@ -58,7 +58,7 @@ function Course (props) {
 Course.propTypes = {
     current_lesson: PropTypes.number.isRequired,
     handleChangeLesson: PropTypes.func.isRequired,
-    handleNextLesson: PropTypes.func.isRequired,
+    handleChangeAlternative: PropTypes.func.isRequired,
     course: PropTypes.array.isRequired,
     courseNum: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired,
